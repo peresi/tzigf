@@ -13,13 +13,21 @@ class AdminUserSeeder extends Seeder
      */
     public function run(): void
     {
-        User::updateOrCreate(
-            ['email' => 'admin@tzigf.or.tz'],
+        $adminEmail = env('ADMIN_EMAIL', 'admin@tzigf.or.tz');
+        $adminName = env('ADMIN_NAME', 'TzIGF Admin');
+
+        $user = User::firstOrCreate(
+            ['email' => $adminEmail],
             [
-                'name' => 'TzIGF Admin',
-                'password' => Hash::make('admin12345'),
+                'name' => $adminName,
+                'password' => Hash::make(env('ADMIN_PASSWORD', 'change-this-password')),
                 'is_admin' => true,
             ]
         );
+
+        if (! $user->is_admin) {
+            $user->is_admin = true;
+            $user->save();
+        }
     }
 }
