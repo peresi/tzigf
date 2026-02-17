@@ -39,14 +39,54 @@ class SchoolApplicantController extends Controller
     {
         $data = $request->validate([
             'full_name' => ['required', 'string', 'max:255'],
+            'gender' => ['required', 'in:Male,Female,Prefer not to say'],
+            'date_of_birth' => ['required', 'date'],
+            'nationality' => ['required', 'string', 'max:120'],
+            'district' => ['required', 'string', 'max:150'],
             'email' => ['required', 'email', 'max:255'],
-            'phone' => ['nullable', 'string', 'max:40'],
-            'organization' => ['nullable', 'string', 'max:255'],
+            'phone' => ['required', 'string', 'max:40'],
+            'current_occupation' => ['required', 'string', 'max:255'],
+            'organization' => ['required', 'string', 'max:255'],
             'stakeholder_group' => ['required', 'string', 'max:100'],
-            'region' => ['nullable', 'string', 'max:150'],
-            'statement_of_interest' => ['required', 'string', 'min:50', 'max:3000'],
+            'stakeholder_other' => ['nullable', 'required_if:stakeholder_group,Other', 'string', 'max:255'],
+            'highest_education' => ['required', 'string', 'max:255'],
+            'field_of_study' => ['nullable', 'string', 'max:255'],
+            'region' => ['required', 'string', 'max:150'],
+            'previous_participation' => ['nullable', 'array'],
+            'previous_participation.*' => ['in:Tanzania IGF,Tanzania School of Internet Governance,Africa School of Internet Governance,Global IGF,None'],
+            'internet_governance_experience' => ['required', 'string', function (string $attribute, mixed $value, \Closure $fail): void {
+                if (str_word_count((string) $value) > 250) {
+                    $fail('The internet governance experience must not exceed 250 words.');
+                }
+            }],
+            'motivation' => ['required', 'string', function (string $attribute, mixed $value, \Closure $fail): void {
+                if (str_word_count((string) $value) > 300) {
+                    $fail('The motivation response must not exceed 300 words.');
+                }
+            }],
+            'institutional_benefit' => ['required', 'string', function (string $attribute, mixed $value, \Closure $fail): void {
+                if (str_word_count((string) $value) > 300) {
+                    $fail('The institutional benefit response must not exceed 300 words.');
+                }
+            }],
+            'passionate_issue' => ['required', 'string', function (string $attribute, mixed $value, \Closure $fail): void {
+                if (str_word_count((string) $value) > 250) {
+                    $fail('The passionate issue response must not exceed 250 words.');
+                }
+            }],
+            'available_full_training' => ['required', 'boolean'],
+            'willing_participate_discussions' => ['required', 'boolean'],
+            'commit_tanzania_igf_2026' => ['required', 'boolean'],
+            'require_accessibility_support' => ['nullable', 'boolean'],
+            'require_travel_support' => ['nullable', 'boolean'],
+            'require_accommodation_support' => ['nullable', 'boolean'],
+            'declaration_confirmed' => ['required', 'boolean'],
+            'signature' => ['required', 'string', 'max:255'],
+            'declaration_date' => ['required', 'date'],
             'status' => ['required', 'in:submitted,under_review,accepted,waitlisted,rejected'],
         ]);
+
+        $data['statement_of_interest'] = $data['motivation'];
 
         $school_applicant->update($data);
 
@@ -78,13 +118,34 @@ class SchoolApplicantController extends Controller
             fputcsv($handle, [
                 'ID',
                 'Full Name',
+                'Gender',
+                'Date of Birth',
+                'Nationality',
                 'Email',
                 'Phone',
-                'Organization',
-                'Stakeholder Group',
                 'Region',
+                'District',
+                'Current Occupation',
+                'Organization',
+                'Stakeholder Category',
+                'Stakeholder Other',
+                'Highest Education',
+                'Field of Study',
+                'Previous Participation',
+                'Internet Governance Experience',
+                'Motivation',
+                'Institutional/Community Benefit',
+                'Passionate Issue',
+                'Available Full Training',
+                'Willing Group Work',
+                'Commit Tanzania IGF 2026',
+                'Need Accessibility Support',
+                'Need Travel Support',
+                'Need Accommodation Support',
+                'Declaration Confirmed',
+                'Signature',
+                'Declaration Date',
                 'Status',
-                'Statement of Interest',
                 'Submitted At',
             ]);
 
@@ -95,13 +156,34 @@ class SchoolApplicantController extends Controller
                         fputcsv($handle, [
                             $applicant->id,
                             $applicant->full_name,
+                            $applicant->gender,
+                            optional($applicant->date_of_birth)->format('Y-m-d'),
+                            $applicant->nationality,
                             $applicant->email,
                             $applicant->phone,
+                            $applicant->region,
+                            $applicant->district,
+                            $applicant->current_occupation,
                             $applicant->organization,
                             $applicant->stakeholder_group,
-                            $applicant->region,
+                            $applicant->stakeholder_other,
+                            $applicant->highest_education,
+                            $applicant->field_of_study,
+                            implode(' | ', $applicant->previous_participation ?? []),
+                            preg_replace('/\s+/', ' ', (string) $applicant->internet_governance_experience),
+                            preg_replace('/\s+/', ' ', (string) $applicant->motivation),
+                            preg_replace('/\s+/', ' ', (string) $applicant->institutional_benefit),
+                            preg_replace('/\s+/', ' ', (string) $applicant->passionate_issue),
+                            $applicant->available_full_training ? 'Yes' : 'No',
+                            $applicant->willing_participate_discussions ? 'Yes' : 'No',
+                            $applicant->commit_tanzania_igf_2026 ? 'Yes' : 'No',
+                            is_null($applicant->require_accessibility_support) ? '' : ($applicant->require_accessibility_support ? 'Yes' : 'No'),
+                            is_null($applicant->require_travel_support) ? '' : ($applicant->require_travel_support ? 'Yes' : 'No'),
+                            is_null($applicant->require_accommodation_support) ? '' : ($applicant->require_accommodation_support ? 'Yes' : 'No'),
+                            $applicant->declaration_confirmed ? 'Yes' : 'No',
+                            $applicant->signature,
+                            optional($applicant->declaration_date)->format('Y-m-d'),
                             $applicant->status,
-                            preg_replace('/\s+/', ' ', (string) $applicant->statement_of_interest),
                             optional($applicant->created_at)->format('Y-m-d H:i:s'),
                         ]);
                     }
@@ -120,8 +202,12 @@ class SchoolApplicantController extends Controller
             $query->where(function (Builder $subQuery) use ($term): void {
                 $subQuery->where('full_name', 'like', "%{$term}%")
                     ->orWhere('email', 'like', "%{$term}%")
+                    ->orWhere('current_occupation', 'like', "%{$term}%")
                     ->orWhere('organization', 'like', "%{$term}%")
-                    ->orWhere('region', 'like', "%{$term}%");
+                    ->orWhere('region', 'like', "%{$term}%")
+                    ->orWhere('district', 'like', "%{$term}%")
+                    ->orWhere('stakeholder_group', 'like', "%{$term}%")
+                    ->orWhere('nationality', 'like', "%{$term}%");
             });
         }
 

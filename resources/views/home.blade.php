@@ -4,24 +4,29 @@
 <header class="site-header">
     <div class="container">
         <div class="top-nav">
-            <div class="brand">TzIGF</div>
+            <a class="brand" href="#home" aria-label="Go to top">
+                <span class="brand-mark">TzIGF</span>
+                <span class="brand-sub">Tanzania Internet Governance Forum</span>
+            </a>
             <nav class="main-nav" aria-label="Main Navigation">
                 <a href="#home">Home</a>
                 <a href="#about">About</a>
                 <a href="#tigw">TIGW</a>
-                <a href="{{ route('school.application') }}">School Application</a>
-                <a href="{{ route('tsig') }}">TzSIG</a>
-                <a href="#tzigf-2026">TzIGF 2026</a>
                 <a href="#reports">Reports</a>
                 <a href="#media">Media</a>
-                <a href="{{ route('gallery') }}">Gallery</a>
+                <a href="#tzigf-2026">TzIGF 2026</a>
                 <a href="#contact">Contact</a>
+            </nav>
+            <div class="nav-actions">
+                <a class="nav-utility" href="{{ route('tsig') }}">TzSIG</a>
+                <a class="nav-utility" href="{{ route('school.application') }}">Apply</a>
+                <a class="nav-utility" href="{{ route('gallery') }}">Gallery</a>
                 @auth
                     <a class="nav-cta" href="{{ route('admin.dashboard') }}">Admin Dashboard</a>
                 @else
                     <a class="nav-cta" href="{{ route('admin.login') }}">Admin Login</a>
                 @endauth
-            </nav>
+            </div>
         </div>
 
         <div class="hero" id="home">
@@ -35,6 +40,7 @@
                 </p>
                 <div class="hero-actions">
                     <a class="btn btn-primary" href="#participate">Join the Forum</a>
+                    <a class="btn btn-secondary" href="{{ route('school.application') }}">Apply for Fellowship</a>
                     <a class="btn btn-secondary" href="#reports">View Reports</a>
                 </div>
             </div>
@@ -50,6 +56,80 @@
 </header>
 
 <main>
+    <section class="section alt" id="fellowship-call">
+        <div class="container">
+            <div class="section-head">
+                <span class="pill">Call for Fellowship Applications</span>
+                <h2>13th Tanzania Internet Governance Forum (TzIGF) 2026</h2>
+                <p><strong>Date:</strong> May 2026 • <strong>Location:</strong> Holiday Inn Hotel, Dar es Salaam • <strong>Format:</strong> Hybrid</p>
+            </div>
+
+            <div class="surface">
+                <p>
+                    The Tanzania Internet Governance Forum (TzIGF) 2026 invites applications for fellowship support to enable inclusive and diverse
+                    participation in the national multistakeholder dialogue on Internet and Digital Governance.
+                </p>
+                <p>
+                    TzIGF serves as Tanzania’s National Initiative within the global Internet Governance Forum ecosystem. The Forum convenes
+                    stakeholders from government, civil society, the technical community, academia and research institutions, the private sector,
+                    media, youth, women, and community representatives to discuss policy, technical, social, and economic issues related to the Internet.
+                </p>
+                <p style="margin-bottom:0;">
+                    The Fellowship Programme is designed to support individuals who demonstrate strong interest, commitment, and potential to contribute
+                    meaningfully to national and international Internet governance processes.
+                </p>
+            </div>
+
+            <div class="grid-2" style="margin-top:1rem;">
+                <article class="card">
+                    <h3>Fellowship Coverage (Subject to Availability of Support)</h3>
+                    <ul class="list-clean">
+                        <li>Event registration</li>
+                        <li>Training/orientation session prior to the Forum</li>
+                        <li>Lunch and refreshments</li>
+                        <li>Travel support (limited and based on need)</li>
+                        <li>Accommodation support (limited and based on need)</li>
+                        <li>Certificate of Participation</li>
+                    </ul>
+                </article>
+
+                <article class="card">
+                    <h3>Eligibility Criteria</h3>
+                    <ul class="list-clean">
+                        <li>Be residents of Tanzania</li>
+                        <li>Demonstrate interest in Internet governance issues</li>
+                        <li>Commit to attending the full Forum</li>
+                        <li>Demonstrate potential to contribute to discussions</li>
+                        <li>Commit to post-forum engagement in their communities or institutions</li>
+                    </ul>
+                </article>
+            </div>
+
+            <div class="grid-2" style="margin-top:1rem;">
+                <article class="card">
+                    <h3>Selection Criteria</h3>
+                    <ul class="list-clean">
+                        <li>Motivation and clarity of impact</li>
+                        <li>Stakeholder diversity</li>
+                        <li>Gender balance</li>
+                        <li>Regional representation</li>
+                        <li>Youth inclusion</li>
+                        <li>Institutional or community relevance</li>
+                    </ul>
+                </article>
+
+                <article class="card">
+                    <h3>Deadline</h3>
+                    <p><strong>30th March 2026</strong></p>
+                    <p style="margin:.5rem 0 0;">Read the criteria above and submit your fellowship application before the deadline.</p>
+                    <div class="hero-actions" style="margin-top:.95rem;">
+                        <a class="btn btn-primary" href="{{ route('school.application') }}" style="width:100%; text-align:center; font-weight:800; padding:.78rem 1rem;">Go to Application Registration Page</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
     <section class="section">
         <div class="container">
             <div class="section-head">
@@ -278,4 +358,78 @@
         <p>Follow us on social media for updates.</p>
     </div>
 </footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const navLinks = Array.from(document.querySelectorAll('.main-nav a[href^="#"]'));
+
+        if (!navLinks.length) {
+            return;
+        }
+
+        const sectionMap = navLinks
+            .map((link) => {
+                const hash = link.getAttribute('href');
+
+                if (!hash || hash === '#') {
+                    return null;
+                }
+
+                const section = document.querySelector(hash);
+
+                return section ? { link, section } : null;
+            })
+            .filter(Boolean);
+
+        const setActiveLink = (activeLink) => {
+            sectionMap.forEach(({ link }) => {
+                const isActive = link === activeLink;
+
+                link.classList.toggle('is-active', isActive);
+
+                if (isActive) {
+                    link.setAttribute('aria-current', 'page');
+                } else {
+                    link.removeAttribute('aria-current');
+                }
+            });
+        };
+
+        navLinks.forEach((link) => {
+            link.addEventListener('click', () => setActiveLink(link));
+        });
+
+        if ('IntersectionObserver' in window && sectionMap.length) {
+            const observer = new IntersectionObserver(
+                (entries) => {
+                    const visibleEntries = entries
+                        .filter((entry) => entry.isIntersecting)
+                        .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+                    if (!visibleEntries.length) {
+                        return;
+                    }
+
+                    const activeSection = visibleEntries[0].target;
+                    const active = sectionMap.find(({ section }) => section === activeSection);
+
+                    if (active) {
+                        setActiveLink(active.link);
+                    }
+                },
+                {
+                    root: null,
+                    rootMargin: '-30% 0px -55% 0px',
+                    threshold: [0.1, 0.2, 0.35, 0.5],
+                }
+            );
+
+            sectionMap.forEach(({ section }) => observer.observe(section));
+        }
+
+        const currentHash = window.location.hash;
+        const hashMatch = sectionMap.find(({ link }) => link.getAttribute('href') === currentHash);
+        setActiveLink(hashMatch ? hashMatch.link : sectionMap[0].link);
+    });
+</script>
 @endsection

@@ -8,7 +8,7 @@
         <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:.65rem;">
             <div>
                 <label for="q">Search</label>
-                <input id="q" name="q" type="text" value="{{ $filters['q'] }}" placeholder="Name, email, organization, region">
+                <input id="q" name="q" type="text" value="{{ $filters['q'] }}" placeholder="Name, email, occupation, org, region, district">
             </div>
 
             <div>
@@ -49,8 +49,11 @@
         <thead>
             <tr>
                 <th>Name</th>
+                <th>Gender</th>
                 <th>Email</th>
+                <th>Location</th>
                 <th>Stakeholder</th>
+                <th>Commitment</th>
                 <th>Status</th>
                 <th>Submitted</th>
                 <th>Actions</th>
@@ -60,8 +63,20 @@
             @forelse($applicants as $applicant)
                 <tr>
                     <td>{{ $applicant->full_name }}</td>
+                    <td>{{ $applicant->gender ?? '-' }}</td>
                     <td>{{ $applicant->email }}</td>
+                    <td>
+                        {{ $applicant->region ?? '-' }}
+                        @if($applicant->district)
+                            / {{ $applicant->district }}
+                        @endif
+                    </td>
                     <td>{{ $applicant->stakeholder_group }}</td>
+                    <td>
+                        FT: {{ $applicant->available_full_training ? 'Y' : 'N' }} |
+                        GW: {{ $applicant->willing_participate_discussions ? 'Y' : 'N' }} |
+                        IGF: {{ $applicant->commit_tanzania_igf_2026 ? 'Y' : 'N' }}
+                    </td>
                     <td>{{ str_replace('_', ' ', ucfirst($applicant->status)) }}</td>
                     <td>{{ optional($applicant->created_at)->format('d M Y H:i') ?? '-' }}</td>
                     <td>
@@ -75,7 +90,7 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="6">No school applications submitted yet.</td>
+                    <td colspan="9">No school applications submitted yet.</td>
                 </tr>
             @endforelse
         </tbody>

@@ -38,30 +38,12 @@
 </header>
 
 <main>
-    <section class="section alt">
-        <div class="container">
-            <div class="section-head">
-                <span class="pill">How to Register</span>
-                <h2>Standard registration process</h2>
-            </div>
-            <div class="surface">
-                <ol class="list-clean">
-                    <li>Watch for the official TzSIG call for applications on TzIGF communication channels.</li>
-                    <li>Complete the registration/application form within the announced timeline.</li>
-                    <li>Provide accurate personal and professional information, including your stakeholder category.</li>
-                    <li>Submit a short statement of interest explaining why you want to participate in TzSIG.</li>
-                    <li>Wait for confirmation and follow onboarding instructions shared by the Secretariat.</li>
-                </ol>
-            </div>
-        </div>
-    </section>
-
     <section class="section">
         <div class="container">
             <div class="section-head">
                 <span class="pill">Application Form</span>
-                <h2>Submit your participation application</h2>
-                <p>Complete the form below to register your interest in joining the Tanzania School of Internet Governance.</p>
+                <h2>Fellowship Application Form</h2>
+                <p>Complete all required sections to apply for the TzSIG 2026 Fellowship.</p>
             </div>
 
             @if(session('status'))
@@ -85,52 +67,214 @@
                 <form method="POST" action="{{ route('school.application.submit') }}">
                     @csrf
 
+                    <h3 style="margin-top:0;">Section 1: Personal Information</h3>
                     <div class="grid-2">
                         <div>
-                            <label for="full_name" style="display:block; font-weight:600; margin-bottom:.35rem;">Full Name *</label>
+                            <label for="full_name" style="display:block; font-weight:600; margin-bottom:.35rem;">Full Name (as it should appear on certificate) *</label>
                             <input id="full_name" name="full_name" type="text" value="{{ old('full_name') }}" required style="width:100%; border:1px solid var(--line); border-radius:10px; padding:.62rem .72rem;">
+                        </div>
+
+                        <div>
+                            <label for="gender" style="display:block; font-weight:600; margin-bottom:.35rem;">Gender *</label>
+                            <select id="gender" name="gender" required style="width:100%; border:1px solid var(--line); border-radius:10px; padding:.62rem .72rem; background:#fff;">
+                                <option value="">Select gender</option>
+                                <option value="Male" @selected(old('gender') === 'Male')>Male</option>
+                                <option value="Female" @selected(old('gender') === 'Female')>Female</option>
+                                <option value="Prefer not to say" @selected(old('gender') === 'Prefer not to say')>Prefer not to say</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="date_of_birth" style="display:block; font-weight:600; margin-bottom:.35rem;">Date of Birth *</label>
+                            <input id="date_of_birth" name="date_of_birth" type="date" value="{{ old('date_of_birth') }}" required style="width:100%; border:1px solid var(--line); border-radius:10px; padding:.62rem .72rem;">
+                        </div>
+
+                        <div>
+                            <label for="nationality" style="display:block; font-weight:600; margin-bottom:.35rem;">Nationality *</label>
+                            <input id="nationality" name="nationality" type="text" value="{{ old('nationality') }}" required style="width:100%; border:1px solid var(--line); border-radius:10px; padding:.62rem .72rem;">
+                        </div>
+
+                        <div>
+                            <label for="region" style="display:block; font-weight:600; margin-bottom:.35rem;">Region of Residence *</label>
+                            <input id="region" name="region" type="text" value="{{ old('region') }}" required style="width:100%; border:1px solid var(--line); border-radius:10px; padding:.62rem .72rem;">
+                        </div>
+
+                        <div>
+                            <label for="district" style="display:block; font-weight:600; margin-bottom:.35rem;">District *</label>
+                            <input id="district" name="district" type="text" value="{{ old('district') }}" required style="width:100%; border:1px solid var(--line); border-radius:10px; padding:.62rem .72rem;">
+                        </div>
+
+                        <div>
+                            <label for="phone" style="display:block; font-weight:600; margin-bottom:.35rem;">Phone Number *</label>
+                            <input id="phone" name="phone" type="text" value="{{ old('phone') }}" required style="width:100%; border:1px solid var(--line); border-radius:10px; padding:.62rem .72rem;">
                         </div>
 
                         <div>
                             <label for="email" style="display:block; font-weight:600; margin-bottom:.35rem;">Email Address *</label>
                             <input id="email" name="email" type="email" value="{{ old('email') }}" required style="width:100%; border:1px solid var(--line); border-radius:10px; padding:.62rem .72rem;">
                         </div>
+                    </div>
 
+                    <h3 style="margin-top:1.2rem;">Section 2: Professional Background</h3>
+                    <div class="grid-2">
                         <div>
-                            <label for="phone" style="display:block; font-weight:600; margin-bottom:.35rem;">Phone Number</label>
-                            <input id="phone" name="phone" type="text" value="{{ old('phone') }}" style="width:100%; border:1px solid var(--line); border-radius:10px; padding:.62rem .72rem;">
+                            <label for="current_occupation" style="display:block; font-weight:600; margin-bottom:.35rem;">Current Occupation *</label>
+                            <input id="current_occupation" name="current_occupation" type="text" value="{{ old('current_occupation') }}" required style="width:100%; border:1px solid var(--line); border-radius:10px; padding:.62rem .72rem;">
                         </div>
 
                         <div>
-                            <label for="organization" style="display:block; font-weight:600; margin-bottom:.35rem;">Organization / Institution</label>
-                            <input id="organization" name="organization" type="text" value="{{ old('organization') }}" style="width:100%; border:1px solid var(--line); border-radius:10px; padding:.62rem .72rem;">
+                            <label for="organization" style="display:block; font-weight:600; margin-bottom:.35rem;">Organization/Institution *</label>
+                            <input id="organization" name="organization" type="text" value="{{ old('organization') }}" required style="width:100%; border:1px solid var(--line); border-radius:10px; padding:.62rem .72rem;">
                         </div>
 
                         <div>
-                            <label for="stakeholder_group" style="display:block; font-weight:600; margin-bottom:.35rem;">Stakeholder Group *</label>
+                            <label for="stakeholder_group" style="display:block; font-weight:600; margin-bottom:.35rem;">Stakeholder Category (Select one) *</label>
                             <select id="stakeholder_group" name="stakeholder_group" required style="width:100%; border:1px solid var(--line); border-radius:10px; padding:.62rem .72rem; background:#fff;">
-                                <option value="">Select stakeholder group</option>
-                                <option value="Youth" @selected(old('stakeholder_group') === 'Youth')>Youth</option>
-                                <option value="Women" @selected(old('stakeholder_group') === 'Women')>Women</option>
-                                <option value="Academia" @selected(old('stakeholder_group') === 'Academia')>Academia</option>
+                                <option value="">Select stakeholder category</option>
+                                <option value="Government" @selected(old('stakeholder_group') === 'Government')>Government</option>
                                 <option value="Civil Society" @selected(old('stakeholder_group') === 'Civil Society')>Civil Society</option>
                                 <option value="Private Sector" @selected(old('stakeholder_group') === 'Private Sector')>Private Sector</option>
                                 <option value="Technical Community" @selected(old('stakeholder_group') === 'Technical Community')>Technical Community</option>
-                                <option value="Government" @selected(old('stakeholder_group') === 'Government')>Government</option>
+                                <option value="Academia/Research" @selected(old('stakeholder_group') === 'Academia/Research')>Academia/Research</option>
+                                <option value="Media/Journalist" @selected(old('stakeholder_group') === 'Media/Journalist')>Media/Journalist</option>
+                                <option value="Student" @selected(old('stakeholder_group') === 'Student')>Student</option>
+                                <option value="Youth Representative" @selected(old('stakeholder_group') === 'Youth Representative')>Youth Representative</option>
+                                <option value="Community Leader" @selected(old('stakeholder_group') === 'Community Leader')>Community Leader</option>
                                 <option value="Other" @selected(old('stakeholder_group') === 'Other')>Other</option>
                             </select>
                         </div>
 
                         <div>
-                            <label for="region" style="display:block; font-weight:600; margin-bottom:.35rem;">Region</label>
-                            <input id="region" name="region" type="text" value="{{ old('region') }}" style="width:100%; border:1px solid var(--line); border-radius:10px; padding:.62rem .72rem;">
+                            <label for="stakeholder_other" style="display:block; font-weight:600; margin-bottom:.35rem;">Other (Specify)</label>
+                            <input id="stakeholder_other" name="stakeholder_other" type="text" value="{{ old('stakeholder_other') }}" style="width:100%; border:1px solid var(--line); border-radius:10px; padding:.62rem .72rem;">
+                        </div>
+
+                        <div>
+                            <label for="highest_education" style="display:block; font-weight:600; margin-bottom:.35rem;">Highest Level of Education Completed *</label>
+                            <input id="highest_education" name="highest_education" type="text" value="{{ old('highest_education') }}" required style="width:100%; border:1px solid var(--line); border-radius:10px; padding:.62rem .72rem;">
+                        </div>
+
+                        <div>
+                            <label for="field_of_study" style="display:block; font-weight:600; margin-bottom:.35rem;">Field of Study (if applicable)</label>
+                            <input id="field_of_study" name="field_of_study" type="text" value="{{ old('field_of_study') }}" style="width:100%; border:1px solid var(--line); border-radius:10px; padding:.62rem .72rem;">
+                        </div>
+                    </div>
+
+                    <h3 style="margin-top:1.2rem;">Section 3: Internet Governance Experience</h3>
+                    <div>
+                        <label style="display:block; font-weight:600; margin-bottom:.45rem;">Have you previously participated in:</label>
+                        @php
+                            $participation = old('previous_participation', []);
+                        @endphp
+                        <div style="display:grid; gap:.35rem;">
+                            @foreach(['Tanzania IGF', 'Tanzania School of Internet Governance', 'Africa School of Internet Governance', 'Global IGF', 'None'] as $option)
+                                <label style="display:flex; align-items:center; gap:.5rem;">
+                                    <input type="checkbox" name="previous_participation[]" value="{{ $option }}" @checked(in_array($option, $participation, true))>
+                                    <span>{{ $option }}</span>
+                                </label>
+                            @endforeach
                         </div>
                     </div>
 
                     <div style="margin-top:.95rem;">
-                        <label for="statement_of_interest" style="display:block; font-weight:600; margin-bottom:.35rem;">Statement of Interest *</label>
-                        <textarea id="statement_of_interest" name="statement_of_interest" rows="6" required style="width:100%; border:1px solid var(--line); border-radius:10px; padding:.62rem .72rem;">{{ old('statement_of_interest') }}</textarea>
-                        <p style="margin:.35rem 0 0; color:var(--muted); font-size:.9rem;">Minimum 50 characters. Explain your motivation and how you plan to apply TzSIG knowledge.</p>
+                        <label for="internet_governance_experience" style="display:block; font-weight:600; margin-bottom:.35rem;">Briefly describe your experience with Internet governance (Max 250 words) *</label>
+                        <textarea id="internet_governance_experience" name="internet_governance_experience" rows="5" required style="width:100%; border:1px solid var(--line); border-radius:10px; padding:.62rem .72rem;">{{ old('internet_governance_experience') }}</textarea>
+                    </div>
+
+                    <h3 style="margin-top:1.2rem;">Section 4: Motivation and Impact</h3>
+                    <div style="margin-top:.4rem;">
+                        <label for="motivation" style="display:block; font-weight:600; margin-bottom:.35rem;">Why do you want to participate in TzSIG 2026? (Max 300 words) *</label>
+                        <textarea id="motivation" name="motivation" rows="5" required style="width:100%; border:1px solid var(--line); border-radius:10px; padding:.62rem .72rem;">{{ old('motivation') }}</textarea>
+                    </div>
+
+                    <div style="margin-top:.95rem;">
+                        <label for="institutional_benefit" style="display:block; font-weight:600; margin-bottom:.35rem;">How will this fellowship benefit your institution/community? (Max 300 words) *</label>
+                        <textarea id="institutional_benefit" name="institutional_benefit" rows="5" required style="width:100%; border:1px solid var(--line); border-radius:10px; padding:.62rem .72rem;">{{ old('institutional_benefit') }}</textarea>
+                    </div>
+
+                    <div style="margin-top:.95rem;">
+                        <label for="passionate_issue" style="display:block; font-weight:600; margin-bottom:.35rem;">Describe one Internet governance issue affecting Tanzania that you are passionate about. (Max 250 words) *</label>
+                        <textarea id="passionate_issue" name="passionate_issue" rows="5" required style="width:100%; border:1px solid var(--line); border-radius:10px; padding:.62rem .72rem;">{{ old('passionate_issue') }}</textarea>
+                    </div>
+
+                    <h3 style="margin-top:1.2rem;">Section 5: Commitment</h3>
+                    <div class="grid-2">
+                        <div>
+                            <label for="available_full_training" style="display:block; font-weight:600; margin-bottom:.35rem;">Are you available to attend the full training program (all days)? *</label>
+                            <select id="available_full_training" name="available_full_training" required style="width:100%; border:1px solid var(--line); border-radius:10px; padding:.62rem .72rem; background:#fff;">
+                                <option value="">Select</option>
+                                <option value="1" @selected(old('available_full_training') === '1')>Yes</option>
+                                <option value="0" @selected(old('available_full_training') === '0')>No</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="willing_participate_discussions" style="display:block; font-weight:600; margin-bottom:.35rem;">Are you willing to actively participate in discussions and group work? *</label>
+                            <select id="willing_participate_discussions" name="willing_participate_discussions" required style="width:100%; border:1px solid var(--line); border-radius:10px; padding:.62rem .72rem; background:#fff;">
+                                <option value="">Select</option>
+                                <option value="1" @selected(old('willing_participate_discussions') === '1')>Yes</option>
+                                <option value="0" @selected(old('willing_participate_discussions') === '0')>No</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="commit_tanzania_igf_2026" style="display:block; font-weight:600; margin-bottom:.35rem;">Do you commit to participating in Tanzania IGF 2026 following the School? *</label>
+                            <select id="commit_tanzania_igf_2026" name="commit_tanzania_igf_2026" required style="width:100%; border:1px solid var(--line); border-radius:10px; padding:.62rem .72rem; background:#fff;">
+                                <option value="">Select</option>
+                                <option value="1" @selected(old('commit_tanzania_igf_2026') === '1')>Yes</option>
+                                <option value="0" @selected(old('commit_tanzania_igf_2026') === '0')>No</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <h3 style="margin-top:1.2rem;">Section 6: Inclusivity &amp; Support (Optional)</h3>
+                    <div class="grid-2">
+                        <div>
+                            <label for="require_accessibility_support" style="display:block; font-weight:600; margin-bottom:.35rem;">Do you require any accessibility support?</label>
+                            <select id="require_accessibility_support" name="require_accessibility_support" style="width:100%; border:1px solid var(--line); border-radius:10px; padding:.62rem .72rem; background:#fff;">
+                                <option value="">Prefer not to answer</option>
+                                <option value="1" @selected(old('require_accessibility_support') === '1')>Yes</option>
+                                <option value="0" @selected(old('require_accessibility_support') === '0')>No</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="require_travel_support" style="display:block; font-weight:600; margin-bottom:.35rem;">Do you require travel support?</label>
+                            <select id="require_travel_support" name="require_travel_support" style="width:100%; border:1px solid var(--line); border-radius:10px; padding:.62rem .72rem; background:#fff;">
+                                <option value="">Prefer not to answer</option>
+                                <option value="1" @selected(old('require_travel_support') === '1')>Yes</option>
+                                <option value="0" @selected(old('require_travel_support') === '0')>No</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="require_accommodation_support" style="display:block; font-weight:600; margin-bottom:.35rem;">Do you require accommodation support?</label>
+                            <select id="require_accommodation_support" name="require_accommodation_support" style="width:100%; border:1px solid var(--line); border-radius:10px; padding:.62rem .72rem; background:#fff;">
+                                <option value="">Prefer not to answer</option>
+                                <option value="1" @selected(old('require_accommodation_support') === '1')>Yes</option>
+                                <option value="0" @selected(old('require_accommodation_support') === '0')>No</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <h3 style="margin-top:1.2rem;">Section 7: Declaration</h3>
+                    <div style="margin-top:.45rem;">
+                        <label style="display:flex; align-items:flex-start; gap:.55rem;">
+                            <input type="checkbox" name="declaration_confirmed" value="1" @checked(old('declaration_confirmed')) required>
+                            <span>I confirm that the information provided is accurate and complete. I understand that selection is competitive and based on merit, diversity, and stakeholder balance.</span>
+                        </label>
+                    </div>
+
+                    <div class="grid-2" style="margin-top:.9rem;">
+                        <div>
+                            <label for="signature" style="display:block; font-weight:600; margin-bottom:.35rem;">Signature *</label>
+                            <input id="signature" name="signature" type="text" value="{{ old('signature') }}" required style="width:100%; border:1px solid var(--line); border-radius:10px; padding:.62rem .72rem;">
+                        </div>
+
+                        <div>
+                            <label for="declaration_date" style="display:block; font-weight:600; margin-bottom:.35rem;">Date *</label>
+                            <input id="declaration_date" name="declaration_date" type="date" value="{{ old('declaration_date') }}" required style="width:100%; border:1px solid var(--line); border-radius:10px; padding:.62rem .72rem;">
+                        </div>
                     </div>
 
                     <div style="margin-top:1rem; display:flex; gap:.65rem; flex-wrap:wrap;">
@@ -138,57 +282,6 @@
                         <a href="{{ route('home') }}" class="btn" style="border-color:var(--line); background:#fff; color:var(--text);">Back to Home</a>
                     </div>
                 </form>
-            </div>
-        </div>
-    </section>
-
-    <section class="section">
-        <div class="container">
-            <div class="section-head">
-                <span class="pill">Limited Participation</span>
-                <h2>When seats are limited</h2>
-                <p>
-                    If applications exceed available places, participation is determined through a selection process
-                    aligned with TzSIG inclusivity and quality principles.
-                </p>
-            </div>
-            <div class="grid-2">
-                <article class="card">
-                    <h3>Selection Considerations</h3>
-                    <ul class="list-clean">
-                        <li>Stakeholder diversity and balanced representation</li>
-                        <li>Inclusion of youth and women participants</li>
-                        <li>Regional and institutional balance</li>
-                        <li>Demonstrated interest in Internet governance</li>
-                        <li>Potential to contribute to national and community dialogue</li>
-                    </ul>
-                </article>
-                <article class="card">
-                    <h3>After You Apply</h3>
-                    <ul class="list-clean">
-                        <li>Applications are reviewed by the organizing team.</li>
-                        <li>Shortlisted applicants receive formal communication.</li>
-                        <li>Final participants receive programme and logistics details.</li>
-                        <li>Unsuccessful applicants are encouraged to apply in future editions.</li>
-                    </ul>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <section class="section alt">
-        <div class="container">
-            <div class="section-head">
-                <span class="pill">Important Notes</span>
-                <h2>Before submitting your application</h2>
-            </div>
-            <div class="surface">
-                <ul class="ticks">
-                    <li>✔ Submit your application before the official deadline.</li>
-                    <li>✔ Ensure your contact details are correct for follow-up communication.</li>
-                    <li>✔ Check your email regularly for updates from the Secretariat.</li>
-                    <li>✔ Keep an eye on the website and social channels for announcement dates.</li>
-                </ul>
             </div>
         </div>
     </section>
