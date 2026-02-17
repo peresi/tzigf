@@ -57,3 +57,25 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## Live Deployment (Namecheap / cPanel Terminal)
+
+From the project root on the live server:
+
+1. Make the deploy script executable (first time only):
+
+	```bash
+	chmod +x deploy.sh
+	```
+
+2. Run one-command deployment:
+
+	```bash
+	./deploy.sh
+	```
+
+Optional: deploy a specific branch:
+
+```bash
+./deploy.sh main
+```
