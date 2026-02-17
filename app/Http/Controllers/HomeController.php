@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\MediaNews;
 use App\Models\Report;
 use App\Models\TigwItem;
+use Illuminate\Support\Facades\Storage;
 
 class HomeController extends Controller
 {
@@ -30,5 +31,25 @@ class HomeController extends Controller
                 ],
             ],
         ]);
+    }
+
+    public function showReport(Report $report)
+    {
+        $path = $report->file_path;
+
+        abort_unless($path && Storage::disk('public')->exists($path), 404);
+
+        return response()->file(Storage::disk('public')->path($path));
+    }
+
+    public function showReportFromStoragePath(string $file)
+    {
+        abort_if(str_contains($file, '..'), 404);
+
+        $path = 'reports/'.ltrim($file, '/');
+
+        abort_unless(Storage::disk('public')->exists($path), 404);
+
+        return response()->file(Storage::disk('public')->path($path));
     }
 }

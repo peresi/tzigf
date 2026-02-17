@@ -8,6 +8,8 @@
             <nav class="main-nav" aria-label="Main Navigation">
                 <a href="{{ route('home') }}">Home</a>
                 <a href="{{ route('gallery') }}">Gallery</a>
+                <a href="{{ route('school.application') }}">School Application</a>
+                <a href="{{ route('tsig') }}">TzSIG</a>
                 <a href="#album">Album</a>
                 @auth
                     <a class="nav-cta" href="{{ route('admin.dashboard') }}">Admin Dashboard</a>

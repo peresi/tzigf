@@ -19,7 +19,7 @@
                 <tr>
                     <td>{{ $report->title }}</td>
                     <td>{{ $report->report_year ?? '-' }}</td>
-                    <td><a href="{{ asset('storage/' . $report->file_path) }}" target="_blank" rel="noopener">Open</a></td>
+                    <td><a href="{{ route('reports.file', $report) }}" target="_blank" rel="noopener">Open</a></td>
                     <td>
                         <a class="btn btn-muted" href="{{ route('admin.reports.edit', $report) }}">Edit</a>
                         <form class="inline" method="POST" action="{{ route('admin.reports.destroy', $report) }}" onsubmit="return confirm('Delete this report?')">

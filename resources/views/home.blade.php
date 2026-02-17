@@ -9,6 +9,8 @@
                 <a href="#home">Home</a>
                 <a href="#about">About</a>
                 <a href="#tigw">TIGW</a>
+                <a href="{{ route('school.application') }}">School Application</a>
+                <a href="{{ route('tsig') }}">TzSIG</a>
                 <a href="#tzigf-2026">TzIGF 2026</a>
                 <a href="#reports">Reports</a>
                 <a href="#media">Media</a>
@@ -201,7 +203,7 @@
             <ul class="reports">
                 @forelse($reports as $report)
                     <li>
-                        <a href="{{ asset('storage/' . $report->file_path) }}" target="_blank" rel="noopener">
+                        <a href="{{ route('reports.file', $report) }}" target="_blank" rel="noopener">
                             {{ $report->title }}{{ $report->report_year ? ' (' . $report->report_year . ')' : '' }}
                         </a>
                     </li>

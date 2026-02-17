@@ -30,5 +30,13 @@
             <a class="btn btn-primary" href="{{ route('admin.tigw-items.index') }}">Open TIGW Items</a>
         </div>
     </div>
+
+    <div class="card" style="margin-bottom:0;">
+        <h3>School Applicants</h3>
+        <p class="muted-text">Review, update status, and export TzSIG applications.</p>
+        <div class="actions">
+            <a class="btn btn-primary" href="{{ route('admin.school-applicants.index') }}">Open Applicants</a>
+        </div>
+    </div>
 </div>
 @endsection
