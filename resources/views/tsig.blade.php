@@ -7,8 +7,13 @@
             <div class="brand">TzIGF</div>
             <nav class="main-nav" aria-label="Main Navigation">
                 <a href="{{ route('home') }}">Home</a>
-                <a href="{{ route('school.application') }}">School Application</a>
+                <a href="{{ route('home') }}#about">About</a>
+                <a href="{{ route('home') }}#tigw">TIGW</a>
+                <a href="{{ route('home') }}#reports">Reports</a>
+                <a href="{{ route('home') }}#media">Media</a>
+                <a href="{{ route('home') }}#contact">Contact</a>
                 <a href="{{ route('tsig') }}">TzSIG</a>
+                <a href="{{ route('school.application') }}">Apply for fellowship TzIGF 2026</a>
                 <a href="{{ route('gallery') }}">Gallery</a>
                 @auth
                     <a class="nav-cta" href="{{ route('admin.dashboard') }}">Admin Dashboard</a>

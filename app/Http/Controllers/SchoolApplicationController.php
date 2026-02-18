@@ -59,9 +59,8 @@ class SchoolApplicationController extends Controller
             'require_accessibility_support' => ['nullable', 'boolean'],
             'require_travel_support' => ['nullable', 'boolean'],
             'require_accommodation_support' => ['nullable', 'boolean'],
+            'data_protection_accepted' => ['accepted'],
             'declaration_confirmed' => ['accepted'],
-            'signature' => ['required', 'string', 'max:255'],
-            'declaration_date' => ['required', 'date'],
         ]);
 
         $data['statement_of_interest'] = $data['motivation'];

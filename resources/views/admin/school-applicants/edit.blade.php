@@ -131,6 +131,13 @@
         </select>
 
         <h2 style="margin:1rem 0 .6rem; font-size:1.05rem;">Section 7: Declaration</h2>
+        <label for="data_protection_accepted">Data Protection Accepted</label>
+        <select id="data_protection_accepted" name="data_protection_accepted">
+            <option value="">Not set</option>
+            <option value="1" @selected((string) old('data_protection_accepted', $applicant->data_protection_accepted) === '1')>Yes</option>
+            <option value="0" @selected((string) old('data_protection_accepted', $applicant->data_protection_accepted) === '0')>No</option>
+        </select>
+
         <label for="declaration_confirmed">Declaration Confirmed</label>
         <select id="declaration_confirmed" name="declaration_confirmed" required>
             <option value="1" @selected((string) old('declaration_confirmed', (int) $applicant->declaration_confirmed) === '1')>Yes</option>

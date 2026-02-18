@@ -14,12 +14,11 @@
                 <a href="#tigw">TIGW</a>
                 <a href="#reports">Reports</a>
                 <a href="#media">Media</a>
-                <a href="#tzigf-2026">TzIGF 2026</a>
                 <a href="#contact">Contact</a>
             </nav>
             <div class="nav-actions">
                 <a class="nav-utility" href="{{ route('tsig') }}">TzSIG</a>
-                <a class="nav-utility" href="{{ route('school.application') }}">Apply</a>
+                <a class="nav-utility" href="{{ route('school.application') }}">Apply for fellowship TzIGF 2026</a>
                 <a class="nav-utility" href="{{ route('gallery') }}">Gallery</a>
                 @auth
                     <a class="nav-cta" href="{{ route('admin.dashboard') }}">Admin Dashboard</a>

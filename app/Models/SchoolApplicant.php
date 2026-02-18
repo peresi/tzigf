@@ -32,6 +32,7 @@ class SchoolApplicant extends Model
         'require_accessibility_support',
         'require_travel_support',
         'require_accommodation_support',
+        'data_protection_accepted',
         'declaration_confirmed',
         'signature',
         'declaration_date',
@@ -49,6 +50,7 @@ class SchoolApplicant extends Model
         'require_accessibility_support' => 'boolean',
         'require_travel_support' => 'boolean',
         'require_accommodation_support' => 'boolean',
+        'data_protection_accepted' => 'boolean',
         'declaration_confirmed' => 'boolean',
     ];
 }

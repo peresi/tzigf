@@ -7,8 +7,13 @@
             <div class="brand">TzIGF</div>
             <nav class="main-nav" aria-label="Main Navigation">
                 <a href="{{ route('home') }}">Home</a>
-                <a href="{{ route('school.application') }}">School Application</a>
+                <a href="{{ route('home') }}#about">About</a>
+                <a href="{{ route('home') }}#tigw">TIGW</a>
+                <a href="{{ route('home') }}#reports">Reports</a>
+                <a href="{{ route('home') }}#media">Media</a>
+                <a href="{{ route('home') }}#contact">Contact</a>
                 <a href="{{ route('tsig') }}">TzSIG</a>
+                <a href="{{ route('school.application') }}">Apply for fellowship TzIGF 2026</a>
                 <a href="{{ route('gallery') }}">Gallery</a>
                 @auth
                     <a class="nav-cta" href="{{ route('admin.dashboard') }}">Admin Dashboard</a>
@@ -44,6 +49,13 @@
                 <span class="pill">Application Form</span>
                 <h2>Fellowship Application Form</h2>
                 <p>Complete all required sections to apply for the TzSIG 2026 Fellowship.</p>
+            </div>
+
+            <div class="surface" style="margin-bottom:1rem; border-color:#bfdbfe; background:#eff6ff;">
+                <h3 style="margin:.1rem 0 .45rem; color:#1e3a8a;">Data Protection Notice</h3>
+                <p style="margin:0; color:#1e3a8a;">
+                    The organizers comply with Tanzania’s Personal Data Protection law. Personal information, data, and photos collected will be used solely for event administration, reporting, certification, and official publicity purposes.
+                </p>
             </div>
 
             @if(session('status'))
@@ -259,22 +271,15 @@
 
                     <h3 style="margin-top:1.2rem;">Section 7: Declaration</h3>
                     <div style="margin-top:.45rem;">
+                        <label style="display:flex; align-items:flex-start; gap:.55rem; margin-bottom:.6rem;">
+                            <input type="checkbox" name="data_protection_accepted" value="1" @checked(old('data_protection_accepted')) required>
+                            <span>I have read and understood the Data Protection Notice.</span>
+                        </label>
+
                         <label style="display:flex; align-items:flex-start; gap:.55rem;">
                             <input type="checkbox" name="declaration_confirmed" value="1" @checked(old('declaration_confirmed')) required>
                             <span>I confirm that the information provided is accurate and complete. I understand that selection is competitive and based on merit, diversity, and stakeholder balance.</span>
                         </label>
-                    </div>
-
-                    <div class="grid-2" style="margin-top:.9rem;">
-                        <div>
-                            <label for="signature" style="display:block; font-weight:600; margin-bottom:.35rem;">Signature *</label>
-                            <input id="signature" name="signature" type="text" value="{{ old('signature') }}" required style="width:100%; border:1px solid var(--line); border-radius:10px; padding:.62rem .72rem;">
-                        </div>
-
-                        <div>
-                            <label for="declaration_date" style="display:block; font-weight:600; margin-bottom:.35rem;">Date *</label>
-                            <input id="declaration_date" name="declaration_date" type="date" value="{{ old('declaration_date') }}" required style="width:100%; border:1px solid var(--line); border-radius:10px; padding:.62rem .72rem;">
-                        </div>
                     </div>
 
                     <div style="margin-top:1rem; display:flex; gap:.65rem; flex-wrap:wrap;">
