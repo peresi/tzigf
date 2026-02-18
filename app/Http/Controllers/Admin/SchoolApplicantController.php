@@ -143,8 +143,6 @@ class SchoolApplicantController extends Controller
                 'Need Accommodation Support',
                 'Data Protection Accepted',
                 'Declaration Confirmed',
-                'Signature',
-                'Declaration Date',
                 'Status',
                 'Submitted At',
             ]);
@@ -182,8 +180,6 @@ class SchoolApplicantController extends Controller
                             is_null($applicant->require_accommodation_support) ? '' : ($applicant->require_accommodation_support ? 'Yes' : 'No'),
                             $applicant->data_protection_accepted ? 'Yes' : 'No',
                             $applicant->declaration_confirmed ? 'Yes' : 'No',
-                            $applicant->signature,
-                            optional($applicant->declaration_date)->format('Y-m-d'),
                             $applicant->status,
                             optional($applicant->created_at)->format('Y-m-d H:i:s'),
                         ]);
