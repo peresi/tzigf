@@ -34,15 +34,12 @@ class SchoolApplicant extends Model
         'require_accommodation_support',
         'data_protection_accepted',
         'declaration_confirmed',
-        'signature',
-        'declaration_date',
         'statement_of_interest',
         'status',
     ];
 
     protected $casts = [
         'date_of_birth' => 'date',
-        'declaration_date' => 'date',
         'previous_participation' => 'array',
         'available_full_training' => 'boolean',
         'willing_participate_discussions' => 'boolean',
