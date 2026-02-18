@@ -82,8 +82,6 @@ class SchoolApplicantController extends Controller
             'require_accommodation_support' => ['nullable', 'boolean'],
             'data_protection_accepted' => ['nullable', 'boolean'],
             'declaration_confirmed' => ['required', 'boolean'],
-            'signature' => ['required', 'string', 'max:255'],
-            'declaration_date' => ['required', 'date'],
             'status' => ['required', 'in:submitted,under_review,accepted,waitlisted,rejected'],
         ]);
 

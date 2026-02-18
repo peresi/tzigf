@@ -144,12 +144,6 @@
             <option value="0" @selected((string) old('declaration_confirmed', (int) $applicant->declaration_confirmed) === '0')>No</option>
         </select>
 
-        <label for="signature">Signature</label>
-        <input id="signature" name="signature" type="text" value="{{ old('signature', $applicant->signature) }}" required>
-
-        <label for="declaration_date">Declaration Date</label>
-        <input id="declaration_date" name="declaration_date" type="date" value="{{ old('declaration_date', optional($applicant->declaration_date)->format('Y-m-d')) }}" required>
-
         <input type="hidden" name="statement_of_interest" value="{{ old('statement_of_interest', $applicant->statement_of_interest ?: $applicant->motivation) }}">
 
         <label for="status">Application Status</label>
