@@ -103,6 +103,17 @@
             line-height: 1.2;
         }
 
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #f8fafc;
+            font-size: 1.4rem;
+            cursor: pointer;
+            padding: .3rem .5rem;
+            z-index: 101;
+        }
+
         .main-nav {
             display: flex;
             flex-wrap: wrap;
@@ -399,15 +410,295 @@
             .hero { grid-template-columns: 1fr; }
             .grid-2 { grid-template-columns: 1fr; }
             .top-nav {
-                grid-template-columns: 1fr;
-                align-items: stretch;
+                grid-template-columns: auto 1fr auto;
+                align-items: center;
                 gap: .6rem;
             }
-            .main-nav { justify-content: flex-start; }
+            .main-nav { 
+                display: none;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                right: 0;
+                background: linear-gradient(130deg, var(--hero-grad-1), #0b5f57 55%, var(--hero-grad-2));
+                flex-direction: column;
+                gap: 0;
+                padding: .8rem;
+                border-radius: 0;
+                border: none;
+                background: rgba(6, 12, 24, .95);
+                backdrop-filter: blur(10px);
+                border-bottom: 1px solid rgba(255,255,255,.16);
+            }
+            .main-nav.active {
+                display: flex;
+            }
+            .main-nav a {
+                padding: .6rem .8rem;
+                border-radius: 8px;
+                text-align: left;
+                font-size: .9rem;
+                width: 100%;
+            }
+            .menu-toggle {
+                display: block;
+            }
             .nav-actions { justify-content: flex-start; }
             .section { padding: 2.45rem 0; }
         }
+
+        @media (max-width: 768px) {
+            .container { padding: 0 0.875rem; }
+            
+            .site-header {
+                padding: .8rem 0 3rem;
+            }
+
+            .top-nav {
+                grid-template-columns: auto 1fr auto;
+                gap: .5rem;
+                padding: .5rem .6rem;
+                border-radius: 10px;
+                margin-bottom: 1.8rem;
+            }
+
+            .brand-mark { font-size: 0.95rem; }
+            .brand-sub { font-size: .65rem; }
+
+            .hero {
+                gap: 0.8rem;
+            }
+
+            .hero h1 {
+                font-size: clamp(1.4rem, 5vw, 2rem);
+            }
+
+            .hero p {
+                font-size: .9rem;
+            }
+
+            .hero-highlight {
+                padding: .8rem;
+            }
+
+            .hero-highlight h3 { font-size: 0.95rem; margin: 0 0 .35rem; }
+            .hero-highlight p { font-size: .8rem; }
+
+            .section { padding: 2rem 0; }
+
+            .section-head h2 {
+                font-size: clamp(1.1rem, 4vw, 1.6rem);
+            }
+
+            .surface {
+                padding: .85rem;
+            }
+
+            .grid-2 { gap: .75rem; }
+            .grid { gap: .7rem; }
+            
+            .card {
+                padding: .8rem;
+            }
+
+            .card h3, .card h4 { 
+                margin: 0 0 .35rem;
+                font-size: 1rem;
+            }
+
+            .btn {
+                padding: .5rem .8rem;
+                font-size: .85rem;
+            }
+
+            .nav-actions {
+                gap: .3rem;
+                flex-direction: column;
+                width: 100%;
+                align-items: stretch;
+            }
+
+            .nav-actions a {
+                font-size: .75rem;
+                padding: .35rem .45rem;
+            }
+
+            .nav-actions a.nav-cta {
+                padding: .4rem .6rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container { padding: 0 0.75rem; }
+
+            .site-header {
+                padding: .6rem 0 2.5rem;
+            }
+
+            .top-nav {
+                grid-template-columns: auto 1fr auto;
+                gap: .4rem;
+                padding: .45rem .5rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .brand-mark { font-size: 0.9rem; }
+            .brand-sub { display: none; }
+
+            .menu-toggle {
+                font-size: 1.2rem;
+                padding: .2rem .4rem;
+            }
+
+            .hero {
+                gap: 0.6rem;
+            }
+
+            .hero h1 {
+                margin: .5rem 0 .6rem;
+                font-size: clamp(1.2rem, 6vw, 1.7rem);
+            }
+
+            .hero p {
+                font-size: .85rem;
+                color: #dbeafe;
+            }
+
+            .hero-actions {
+                margin-top: .8rem;
+                gap: .4rem;
+            }
+
+            .hero-highlight {
+                padding: .65rem;
+            }
+
+            .hero-highlight h3 { 
+                font-size: 0.85rem; 
+                margin: 0 0 .25rem; 
+            }
+            
+            .hero-highlight p { 
+                font-size: .75rem; 
+                margin: .15rem 0;
+            }
+
+            .btn {
+                padding: .45rem .65rem;
+                font-size: .8rem;
+            }
+
+            .section { 
+                padding: 1.5rem 0; 
+            }
+
+            .section-head {
+                margin-bottom: .8rem;
+            }
+
+            .section-head h2 {
+                font-size: clamp(1rem, 5vw, 1.4rem);
+                margin: 0;
+            }
+
+            .section-head .pill {
+                font-size: .7rem;
+                padding: .18rem .4rem;
+            }
+
+            .surface {
+                padding: .7rem;
+                border-radius: 12px;
+            }
+
+            .grid-2, .grid { 
+                gap: .6rem; 
+                grid-template-columns: 1fr !important;
+            }
+
+            .card {
+                padding: .7rem;
+            }
+
+            .card h3, .card h4 { 
+                margin: 0 0 .3rem;
+                font-size: .95rem;
+            }
+
+            .card p {
+                font-size: .85rem;
+            }
+
+            .list-clean { padding-left: 1rem; }
+            .ticks li { padding-left: 1.2rem; }
+
+            .eyebrow {
+                font-size: .7rem;
+            }
+
+            .nav-actions {
+                gap: .25rem;
+            }
+
+            .nav-actions a {
+                font-size: .7rem;
+                padding: .3rem .35rem;
+            }
+
+            .nav-actions a.nav-utility {
+                padding: .3rem .4rem;
+            }
+
+            .nav-actions a.nav-cta {
+                padding: .35rem .5rem;
+            }
+
+            footer {
+                padding: 1.5rem 0;
+            }
+
+            .main-nav {
+                top: 50px;
+                gap: 0;
+                padding: .6rem;
+            }
+
+            .main-nav a {
+                padding: .5rem .6rem;
+                font-size: .85rem;
+            }
+        }
     </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const mainNav = document.querySelector('.main-nav');
+            
+            if (menuToggle && mainNav) {
+                menuToggle.addEventListener('click', function() {
+                    mainNav.classList.toggle('active');
+                    menuToggle.setAttribute('aria-expanded', mainNav.classList.contains('active'));
+                });
+
+                // Close menu when a link is clicked
+                const navLinks = mainNav.querySelectorAll('a');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        mainNav.classList.remove('active');
+                        menuToggle.setAttribute('aria-expanded', 'false');
+                    });
+                });
+
+                // Close menu when clicking outside
+                document.addEventListener('click', function(event) {
+                    if (!event.target.closest('.top-nav') && mainNav.classList.contains('active')) {
+                        mainNav.classList.remove('active');
+                        menuToggle.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            }
+        });
+    </script>
 </head>
 <body>
     @yield('content')

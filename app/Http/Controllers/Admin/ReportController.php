@@ -37,7 +37,7 @@ class ReportController extends Controller
             'title' => ['required', 'string', 'max:255'],
             'report_year' => ['nullable', 'integer', 'between:2000,2100'],
             'description' => ['nullable', 'string'],
-            'file' => ['required', File::types(['pdf', 'doc', 'docx'])->max(10240)],
+            'file' => ['required', File::types(['pdf', 'doc', 'docx'])->max(20480)], // Increased to 20MB
         ]);
 
         try {

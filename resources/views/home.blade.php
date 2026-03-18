@@ -120,7 +120,7 @@
                 <article class="card">
                     <h3>Deadline</h3>
                     <p><strong>30th March 2026</strong></p>
-                    <p style="margin:.5rem 0 0;">Read the criteria above and submit your fellowship application before the deadline.</p>
+                    <p style="margin:.5rem 0 0;">Rertad the criteria above and submit your fellowship application before the deadline.</p>
                     <div class="hero-actions" style="margin-top:.95rem;">
                         <a class="btn btn-primary" href="{{ route('school.application') }}" style="width:100%; text-align:center; font-weight:800; padding:.78rem 1rem;">Go to Application Registration Page</a>
                     </div>

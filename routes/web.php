@@ -5,15 +5,20 @@ use App\Http\Controllers\Admin\MediaNewsController;
 use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\SchoolApplicantController;
 use App\Http\Controllers\Admin\TigwItemController;
+use App\Http\Controllers\Admin\TsigApplicationController as AdminTsigApplicationController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SchoolApplicationController;
+use App\Http\Controllers\TsigApplicationController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/gallery', [HomeController::class, 'gallery'])->name('gallery');
 Route::get('/school/application', [SchoolApplicationController::class, 'index'])->name('school.application');
 Route::post('/school/application', [SchoolApplicationController::class, 'store'])->name('school.application.submit');
-Route::view('/tsig', 'tsig')->name('tsig');
+Route::get('/tsig', function () {
+    return view('tsig');
+})->name('tsig');
+Route::post('/tsig/application', [TsigApplicationController::class, 'store'])->name('tsig.application.submit');
 Route::get('/reports/{report}/file', [HomeController::class, 'showReport'])->name('reports.file');
 Route::get('/storage/reports/{file}', [HomeController::class, 'showReportFromStoragePath'])
     ->where('file', '.*')
@@ -33,4 +38,6 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::resource('tigw-items', TigwItemController::class);
     Route::get('school-applicants/export', [SchoolApplicantController::class, 'exportCsv'])->name('school-applicants.export');
     Route::resource('school-applicants', SchoolApplicantController::class)->only(['index', 'edit', 'update', 'destroy']);
+    Route::get('tsig-applications/export', [AdminTsigApplicationController::class, 'exportCsv'])->name('tsig-applications.export');
+    Route::resource('tsig-applications', AdminTsigApplicationController::class)->only(['index', 'edit', 'update', 'destroy']);
 });

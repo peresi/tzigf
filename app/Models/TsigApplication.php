@@ -4,8 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class SchoolApplicant extends Model
+class TsigApplication extends Model
 {
+    protected $table = 'tsig_applications';
+
     protected $fillable = [
         'full_name',
         'gender',
@@ -31,11 +33,8 @@ class SchoolApplicant extends Model
         'willing_participate_discussions',
         'commit_tanzania_igf_2026',
         'require_accessibility_support',
-        'require_travel_support',
-        'require_accommodation_support',
         'data_protection_accepted',
         'declaration_confirmed',
-        'statement_of_interest',
         'status',
     ];
 
@@ -46,8 +45,6 @@ class SchoolApplicant extends Model
         'willing_participate_discussions' => 'boolean',
         'commit_tanzania_igf_2026' => 'boolean',
         'require_accessibility_support' => 'boolean',
-        'require_travel_support' => 'boolean',
-        'require_accommodation_support' => 'boolean',
         'data_protection_accepted' => 'boolean',
         'declaration_confirmed' => 'boolean',
     ];

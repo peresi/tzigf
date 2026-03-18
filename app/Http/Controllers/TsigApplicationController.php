@@ -2,18 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\SchoolApplicant;
+use App\Models\TsigApplication;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
-class SchoolApplicationController extends Controller
+class TsigApplicationController extends Controller
 {
-    public function index(): View
-    {
-        return view('school-application');
-    }
-
     public function store(Request $request): RedirectResponse
     {
         $data = $request->validate([
@@ -58,21 +53,17 @@ class SchoolApplicationController extends Controller
             'willing_participate_discussions' => ['required', 'boolean'],
             'commit_tanzania_igf_2026' => ['required', 'boolean'],
             'require_accessibility_support' => ['nullable', 'boolean'],
-            'require_travel_support' => ['nullable', 'boolean'],
-            'require_accommodation_support' => ['nullable', 'boolean'],
             'data_protection_accepted' => ['accepted'],
             'declaration_confirmed' => ['accepted'],
         ]);
 
-        $data['statement_of_interest'] = $data['motivation'];
-
-        SchoolApplicant::create([
+        TsigApplication::create([
             ...$data,
             'status' => 'submitted',
         ]);
 
         return redirect()
-            ->route('school.application')
-            ->with('status', 'Your application has been submitted successfully. We will contact you after the review process.');
+            ->route('tsig')
+            ->with('status', 'Your TSIG Fellowship application has been submitted successfully. We will contact you after the review process.');
     }
 }

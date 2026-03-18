@@ -32,10 +32,18 @@
     </div>
 
     <div class="card" style="margin-bottom:0;">
-        <h3>School Applicants</h3>
-        <p class="muted-text">Review, update status, and export TzSIG applications.</p>
+        <h3>TzIGF Fellowship Applications</h3>
+        <p class="muted-text">Manage TzIGF fellowship applications for internet governance forum attendance.</p>
         <div class="actions">
-            <a class="btn btn-primary" href="{{ route('admin.school-applicants.index') }}">Open Applicants</a>
+            <a class="btn btn-primary" href="{{ route('admin.school-applicants.index') }}">Open Applications</a>
+        </div>
+    </div>
+
+    <div class="card" style="margin-bottom:0;">
+        <h3>TzSIG Fellowship Applications</h3>
+        <p class="muted-text">Manage Tanzania School of Internet Governance fellowship applications.</p>
+        <div class="actions">
+            <a class="btn btn-primary" href="{{ route('admin.tsig-applications.index') }}">Open Applications</a>
         </div>
     </div>
 </div>
