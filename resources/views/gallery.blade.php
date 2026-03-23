@@ -17,10 +17,9 @@
                 <span class="sr-only">Tanzania IGF</span>
                 <span class="brand-sub">Tanzania Internet Governance Forum</span>
             </a>
-            <nav class="main-nav" aria-label="Main Navigation">
-                <a href="{{ route('home') }}" class="{{ request()->routeIs('home') ? 'is-active' : '' }}">Home</a>
-            </nav>
+            <nav class="main-nav" aria-label="Main Navigation"></nav>
             <div class="nav-actions">
+                <a class="nav-utility" href="{{ route('home') }}" class="{{ request()->routeIs('home') ? 'is-active' : '' }}">Home</a>
                 <a class="nav-utility" href="{{ route('tsig') }}">TzSIG</a>
                 <a class="nav-utility" href="{{ route('tzmag') }}">TzMAG</a>
                 <a class="nav-cta" href="{{ route('school.application') }}">Apply for Fellowship</a>
