@@ -12,6 +12,7 @@
             <div class="topbar-right"><a href="mailto:info@tzigf.or.tz">info@tzigf.or.tz</a></div>
         </div>
         <div class="top-nav">
+            <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
             <a class="brand" href="{{ route('home') }}" aria-label="Go to home">
                 <img class="brand-logo" src="{{ asset('TZIGF OFFICIAL LOGO edit (1)_page-0001.jpg') }}" alt="TzIGF logo">
                 <span class="sr-only">Tanzania IGF</span>

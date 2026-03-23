@@ -4,6 +4,7 @@
 <header class="site-header">
     <div class="container">
         <div class="top-nav">
+            <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
             <a class="brand" href="{{ route('home') }}" aria-label="Go to home">
                 <img class="brand-logo" src="{{ asset('TZIGF OFFICIAL LOGO edit (1)_page-0001.jpg') }}" alt="TzIGF logo">
                 <span class="sr-only">Tanzania IGF</span>
