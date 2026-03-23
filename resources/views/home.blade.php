@@ -5,7 +5,8 @@
     <div class="container">
         <div class="top-nav">
             <a class="brand" href="#home" aria-label="Go to top">
-                <span class="brand-mark">TzIGF</span>
+                <img class="brand-logo" src="{{ asset('TZIGF OFFICIAL LOGO edit (1)_page-0001.jpg') }}" alt="TzIGF logo">
+                <span class="sr-only">Tanzania IGF</span>
                 <span class="brand-sub">Tanzania Internet Governance Forum</span>
             </a>
             <nav class="main-nav" aria-label="Main Navigation">
@@ -18,12 +19,13 @@
             </nav>
             <div class="nav-actions">
                 <a class="nav-utility" href="{{ route('tsig') }}">TzSIG</a>
-                <a class="nav-utility" href="{{ route('school.application') }}">Apply for fellowship TzIGF 2026</a>
+                <a class="nav-utility" href="{{ route('tzmag') }}">TzMAG</a>
+                <a class="nav-cta" href="{{ route('school.application') }}">Apply for Fellowship</a>
                 <a class="nav-utility" href="{{ route('gallery') }}">Gallery</a>
                 @auth
-                    <a class="nav-cta" href="{{ route('admin.dashboard') }}">Admin Dashboard</a>
+                    <a href="{{ route('admin.dashboard') }}">Admin Dashboard</a>
                 @else
-                    <a class="nav-cta" href="{{ route('admin.login') }}">Admin Login</a>
+                    <a href="{{ route('admin.login') }}">Admin Login</a>
                 @endauth
             </div>
         </div>
@@ -38,8 +40,8 @@
                     build cooperation, and shape Tanzania’s digital future.
                 </p>
                 <div class="hero-actions">
-                    <a class="btn btn-primary" href="#participate">Join the Forum</a>
-                    <a class="btn btn-secondary" href="{{ route('school.application') }}">Apply for Fellowship</a>
+                    <a class="btn btn-primary" href="#participate">TzSIG Fellowship application</a>
+                    <a class="btn btn-secondary" href="{{ route('school.application') }}">TZIGF Fellowship application</a>
                     <a class="btn btn-secondary" href="#reports">View Reports</a>
                 </div>
             </div>

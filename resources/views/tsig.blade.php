@@ -4,23 +4,30 @@
 <header class="site-header">
     <div class="container">
         <div class="top-nav">
-            <div class="brand">TzIGF</div>
+            <a class="brand" href="{{ route('home') }}" aria-label="Go to home">
+                <img class="brand-logo" src="{{ asset('TZIGF OFFICIAL LOGO edit (1)_page-0001.jpg') }}" alt="TzIGF logo">
+                <span class="sr-only">Tanzania IGF</span>
+                <span class="brand-sub">Tanzania Internet Governance Forum</span>
+            </a>
             <nav class="main-nav" aria-label="Main Navigation">
-                <a href="{{ route('home') }}">Home</a>
-                <a href="{{ route('home') }}#about">About</a>
-                <a href="{{ route('home') }}#tigw">TIGW</a>
-                <a href="{{ route('home') }}#reports">Reports</a>
-                <a href="{{ route('home') }}#media">Media</a>
-                <a href="{{ route('home') }}#contact">Contact</a>
-                <a href="{{ route('tsig') }}">TzSIG</a>
-                <a href="{{ route('school.application') }}">Apply for fellowship TzIGF 2026</a>
-                <a href="{{ route('gallery') }}">Gallery</a>
-                @auth
-                    <a class="nav-cta" href="{{ route('admin.dashboard') }}">Admin Dashboard</a>
-                @else
-                    <a class="nav-cta" href="{{ route('admin.login') }}">Admin Login</a>
-                @endauth
+                <a href="{{ route('home') }}" class="{{ request()->routeIs('home') ? 'is-active' : '' }}">Home</a>
+                <a href="{{ route('home') }}#about" class="{{ request()->routeIs('home') ? 'is-active' : '' }}">About</a>
+                <a href="{{ route('home') }}#tigw" class="{{ request()->routeIs('home') ? 'is-active' : '' }}">TIGW</a>
+                <a href="{{ route('home') }}#reports" class="{{ request()->routeIs('home') ? 'is-active' : '' }}">Reports</a>
+                <a href="{{ route('home') }}#media" class="{{ request()->routeIs('home') ? 'is-active' : '' }}">Media</a>
+                <a href="{{ route('home') }}#contact" class="{{ request()->routeIs('home') ? 'is-active' : '' }}">Contact</a>
             </nav>
+            <div class="nav-actions">
+                <a class="nav-utility" href="{{ route('tsig') }}">TzSIG</a>
+                <a class="nav-utility" href="{{ route('tzmag') }}">TzMAG</a>
+                <a class="nav-cta" href="{{ route('school.application') }}">Apply for Fellowship</a>
+                <a class="nav-utility" href="{{ route('gallery') }}">Gallery</a>
+                @auth
+                    <a href="{{ route('admin.dashboard') }}">Admin Dashboard</a>
+                @else
+                    <a href="{{ route('admin.login') }}">Admin Login</a>
+                @endauth
+            </div>
         </div>
 
         <div class="hero">

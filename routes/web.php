@@ -18,6 +18,9 @@ Route::post('/school/application', [SchoolApplicationController::class, 'store']
 Route::get('/tsig', function () {
     return view('tsig');
 })->name('tsig');
+Route::get('/tzmag', function () {
+    return view('tzmag');
+})->name('tzmag');
 Route::post('/tsig/application', [TsigApplicationController::class, 'store'])->name('tsig.application.submit');
 Route::get('/reports/{report}/file', [HomeController::class, 'showReport'])->name('reports.file');
 Route::get('/storage/reports/{file}', [HomeController::class, 'showReportFromStoragePath'])

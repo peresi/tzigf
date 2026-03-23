@@ -88,6 +88,27 @@
             text-decoration: none;
             color: #f8fafc;
             white-space: nowrap;
+            align-items: center;
+            min-height: 42px;
+        }
+
+        .brand-logo {
+            max-height: 38px;
+            width: auto;
+            display: block;
+            border-radius: 8px;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
         }
 
         .brand-mark {
@@ -258,6 +279,38 @@
         .hero-highlight p { margin: .25rem 0; color: #f1f5f9; }
 
         .section { padding: 3rem 0; }
+
+        .table-wrapper {
+            overflow-x: auto;
+            margin-top: 1.5rem;
+            background: #fff;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            box-shadow: 0 6px 16px rgba(15, 23, 42, .06);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 640px;
+        }
+
+        th, td {
+            padding: 0.72rem 0.8rem;
+            border-bottom: 1px solid var(--line);
+            text-align: left;
+            vertical-align: top;
+        }
+
+        th {
+            background: #f1f5f9;
+            color: #0f172a;
+            font-weight: 700;
+        }
+
+        tbody tr:hover {
+            background: rgba(15, 23, 42, .03);
+        }
 
         .section-head {
             margin-bottom: 1rem;
