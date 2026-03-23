@@ -19,11 +19,6 @@
             </a>
             <nav class="main-nav" aria-label="Main Navigation">
                 <a href="#home">Home</a>
-                <a href="#about">About</a>
-                <a href="#tigw">TIGW</a>
-                <a href="#reports">Reports</a>
-                <a href="#media">Media</a>
-                <a href="#contact">Contact</a>
             </nav>
             <div class="nav-actions">
                 <a class="nav-utility" href="{{ route('tsig') }}">TzSIG</a>

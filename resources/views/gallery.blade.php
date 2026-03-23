@@ -19,11 +19,6 @@
             </a>
             <nav class="main-nav" aria-label="Main Navigation">
                 <a href="{{ route('home') }}" class="{{ request()->routeIs('home') ? 'is-active' : '' }}">Home</a>
-                <a href="{{ route('home') }}#about" class="{{ request()->routeIs('home') ? 'is-active' : '' }}">About</a>
-                <a href="{{ route('home') }}#tigw" class="{{ request()->routeIs('home') ? 'is-active' : '' }}">TIGW</a>
-                <a href="{{ route('home') }}#reports" class="{{ request()->routeIs('home') ? 'is-active' : '' }}">Reports</a>
-                <a href="{{ route('home') }}#media" class="{{ request()->routeIs('home') ? 'is-active' : '' }}">Media</a>
-                <a href="{{ route('home') }}#contact" class="{{ request()->routeIs('home') ? 'is-active' : '' }}">Contact</a>
             </nav>
             <div class="nav-actions">
                 <a class="nav-utility" href="{{ route('tsig') }}">TzSIG</a>
