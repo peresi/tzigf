@@ -81,12 +81,18 @@
             font-size: .82rem;
             line-height: 1.2;
             backdrop-filter: blur(4px);
+            flex-wrap: wrap;
+        }
+
+        .site-topbar .topbar-left {
+            flex: 0 0 auto;
+            font-size: .75rem;
         }
 
         .site-topbar .topbar-center {
             text-align: center;
             flex: 1;
-            min-width: 180px;
+            min-width: 200px;
         }
 
         .site-topbar .topbar-title {
@@ -94,12 +100,18 @@
             letter-spacing: .03em;
             text-transform: uppercase;
             font-size: .82rem;
+            margin: 0;
         }
 
         .site-topbar .topbar-subtitle {
             font-size: .74rem;
-            opacity: .9;
-            margin-top: .08rem;
+            margin: .05rem 0 0;
+        }
+
+        .site-topbar .topbar-right {
+            flex: 0 0 auto;
+            font-size: .75rem;
+            white-space: nowrap;
         }
 
         .site-topbar a {
@@ -583,106 +595,158 @@
                 padding: .2rem .4rem;
             }
             .nav-actions { 
-                position: fixed;
-                right: 0;
-                top: 0;
-                height: fit-content;
-                flex-direction: column;
-                justify-content: flex-start;
-                align-items: flex-end;
-                gap: 0;
+                gap: .35rem;
+                align-items: center;
+                flex-wrap: wrap;
+                position: relative;
+                right: auto;
+                top: auto;
+                height: auto;
+                justify-content: flex-end;
                 background: transparent;
                 padding: 0;
                 width: auto;
                 z-index: 99;
             }
-            .section { padding: 2.45rem 0; }
+            .section { padding: 2.2rem 0; }
         }
 
         @media (max-width: 768px) {
             .container { padding: 0 0.875rem; }
             
             .site-header {
-                padding: .8rem 0 3rem;
+                padding: .7rem 0 2.5rem;
+            }
+
+            .site-topbar {
+                gap: .4rem;
+                margin-bottom: .7rem;
+                padding: .35rem .6rem;
+                font-size: .70rem;
+                flex-wrap: wrap;
+                justify-content: center;
+                text-align: center;
+            }
+
+            .site-topbar .topbar-left,
+            .site-topbar .topbar-right {
+                display: none;
+            }
+
+            .site-topbar .topbar-center {
+                flex: 1;
+                min-width: 100%;
+            }
+
+            .site-topbar .topbar-title {
+                font-size: .70rem;
+                letter-spacing: 0;
+                margin: 0;
+            }
+
+            .site-topbar .topbar-subtitle {
+                font-size: .62rem;
+                margin: .02rem 0 0;
             }
 
             .top-nav {
                 grid-template-columns: auto 1fr auto;
-                gap: .5rem;
-                padding: .5rem .6rem;
+                gap: .35rem;
+                padding: .4rem .5rem;
                 border-radius: 10px;
-                margin-bottom: 1.8rem;
+                margin-bottom: 1.2rem;
                 position: relative;
                 z-index: 50;
             }
 
-            .brand-mark { font-size: 0.95rem; }
-            .brand-sub { font-size: .65rem; }
+            .brand {
+                gap: .35rem;
+                min-height: 40px;
+            }
+
+            .brand-logo {
+                max-height: 32px;
+            }
+
+            .brand-mark { font-size: 0.88rem; }
+            .brand-sub { font-size: .60rem; }
+
+            .menu-toggle {
+                font-size: 1.3rem;
+                padding: .2rem .35rem;
+            }
 
             .hero {
-                gap: 0.8rem;
+                gap: 0.7rem;
             }
 
             .hero h1 {
-                font-size: clamp(1.4rem, 5vw, 2rem);
+                font-size: clamp(1.3rem, 5vw, 1.9rem);
             }
 
             .hero p {
-                font-size: .9rem;
+                font-size: .87rem;
             }
 
             .hero-highlight {
-                padding: .8rem;
+                padding: .75rem;
             }
 
-            .hero-highlight h3 { font-size: 0.95rem; margin: 0 0 .35rem; }
-            .hero-highlight p { font-size: .8rem; }
+            .hero-highlight h3 { 
+                font-size: 0.92rem; 
+                margin: 0 0 .35rem; 
+            }
+            .hero-highlight p { 
+                font-size: .78rem;
+            }
 
-            .section { padding: 2rem 0; }
+            .section { padding: 1.8rem 0; }
 
             .section-head h2 {
-                font-size: clamp(1.1rem, 4vw, 1.6rem);
+                font-size: clamp(1.05rem, 4vw, 1.55rem);
             }
 
             .surface {
-                padding: .85rem;
+                padding: .80rem;
             }
 
-            .grid-2 { gap: .75rem; }
-            .grid { gap: .7rem; }
+            .grid-2 { gap: .70rem; }
+            .grid { gap: .65rem; }
             
             .card {
-                padding: .8rem;
+                padding: .75rem;
             }
 
             .card h3, .card h4 { 
-                margin: 0 0 .35rem;
-                font-size: 1rem;
+                margin: 0 0 .30rem;
+                font-size: .97rem;
             }
 
             .btn {
-                padding: .5rem .8rem;
-                font-size: .85rem;
+                padding: .5rem .75rem;
+                font-size: .82rem;
             }
 
             .nav-actions {
-                gap: .3rem;
-                flex-direction: column;
+                gap: .25rem;
+                flex-direction: row;
+                flex-wrap: wrap;
                 width: auto;
                 align-items: stretch;
-                position: fixed;
-                right: .5rem;
-                top: .5rem;
+                position: relative;
+                right: auto;
+                top: auto;
                 background: transparent;
             }
 
             .nav-actions a {
-                font-size: .75rem;
-                padding: .35rem .45rem;
+                font-size: .70rem;
+                padding: .30rem .40rem;
             }
 
             .nav-actions a.nav-cta {
-                padding: .4rem .6rem;
+                padding: .35rem .55rem;
+                font-size: .70rem;
             }
             
             .main-nav {
@@ -693,158 +757,208 @@
             
             .main-nav a {
                 padding: .65rem 1rem;
-                font-size: .9rem;
+                font-size: .88rem;
             }
         }
 
         @media (max-width: 480px) {
-            .container { padding: 0 0.75rem; }
+            .container { padding: 0 0.70rem; }
 
             .site-header {
-                padding: .6rem 0 2.5rem;
+                padding: .5rem 0 2rem;
+            }
+
+            .site-topbar {
+                gap: .3rem;
+                margin-bottom: .55rem;
+                padding: .30rem .5rem;
+                font-size: .65rem;
+                flex-wrap: wrap;
+            }
+
+            .site-topbar .topbar-center {
+                flex: 1;
+                min-width: 100%;
+            }
+
+            .site-topbar .topbar-title {
+                font-size: .65rem;
+                letter-spacing: 0;
+                margin: 0;
+            }
+
+            .site-topbar .topbar-subtitle {
+                font-size: .58rem;
+                margin: 0;
             }
 
             .top-nav {
                 grid-template-columns: auto 1fr auto;
-                gap: .4rem;
-                padding: .45rem .5rem;
-                margin-bottom: 1.5rem;
+                gap: .3rem;
+                padding: .35rem .45rem;
+                border-radius: 8px;
+                margin-bottom: 1rem;
                 position: relative;
                 z-index: 50;
             }
 
-            .brand-mark { font-size: 0.9rem; }
+            .brand {
+                gap: .25rem;
+                min-height: 36px;
+            }
+
+            .brand-logo { 
+                max-height: 28px; 
+            }
+
+            .brand-mark { font-size: 0.82rem; }
             .brand-sub { display: none; }
 
             .menu-toggle {
-                font-size: 1.2rem;
-                padding: .2rem .4rem;
+                font-size: 1.1rem;
+                padding: .15rem .3rem;
             }
 
             .hero {
-                gap: 0.6rem;
+                gap: 0.5rem;
             }
 
             .hero h1 {
-                margin: .5rem 0 .6rem;
-                font-size: clamp(1.2rem, 6vw, 1.7rem);
+                margin: .4rem 0 .5rem;
+                font-size: clamp(1.15rem, 5.5vw, 1.6rem);
             }
 
             .hero p {
-                font-size: .85rem;
+                font-size: .80rem;
                 color: #dbeafe;
             }
 
             .hero-actions {
-                margin-top: .8rem;
-                gap: .4rem;
+                margin-top: .65rem;
+                gap: .3rem;
             }
 
             .hero-highlight {
-                padding: .65rem;
+                padding: .55rem;
             }
 
             .hero-highlight h3 { 
-                font-size: 0.85rem; 
-                margin: 0 0 .25rem; 
+                font-size: 0.80rem; 
+                margin: 0 0 .20rem; 
             }
             
             .hero-highlight p { 
-                font-size: .75rem; 
-                margin: .15rem 0;
+                font-size: .70rem; 
+                margin: .10rem 0;
             }
 
             .btn {
-                padding: .45rem .65rem;
-                font-size: .8rem;
+                padding: .40rem .60rem;
+                font-size: .75rem;
             }
 
             .section { 
-                padding: 1.5rem 0; 
+                padding: 1.3rem 0; 
             }
 
             .section-head {
-                margin-bottom: .8rem;
+                margin-bottom: .65rem;
             }
 
             .section-head h2 {
-                font-size: clamp(1rem, 5vw, 1.4rem);
+                font-size: clamp(.95rem, 5vw, 1.3rem);
                 margin: 0;
             }
 
+            .section-head p {
+                font-size: .75rem;
+            }
+
             .section-head .pill {
-                font-size: .7rem;
-                padding: .18rem .4rem;
+                font-size: .65rem;
+                padding: .15rem .35rem;
             }
 
             .surface {
-                padding: .7rem;
-                border-radius: 12px;
+                padding: .60rem;
+                border-radius: 10px;
             }
 
             .grid-2, .grid { 
-                gap: .6rem; 
+                gap: .50rem; 
                 grid-template-columns: 1fr !important;
             }
 
             .card {
-                padding: .7rem;
+                padding: .60rem;
             }
 
             .card h3, .card h4 { 
-                margin: 0 0 .3rem;
-                font-size: .95rem;
+                margin: 0 0 .25rem;
+                font-size: .88rem;
             }
 
             .card p {
-                font-size: .85rem;
+                font-size: .78rem;
             }
 
-            .list-clean { padding-left: 1rem; }
-            .ticks li { padding-left: 1.2rem; }
+            .list-clean { padding-left: .90rem; }
+            .list-clean li { margin: .25rem 0; font-size: .78rem; }
+            .ticks li { padding-left: 1rem; }
 
             .eyebrow {
-                font-size: .7rem;
+                font-size: .65rem;
             }
 
             .nav-actions {
-                gap: .25rem;
-                flex-direction: column;
-                position: fixed;
-                right: .3rem;
-                top: .3rem;
+                gap: .20rem;
+                flex-direction: row;
+                flex-wrap: wrap;
+                position: relative;
+                right: auto;
+                top: auto;
                 width: auto;
                 background: transparent;
             }
 
             .nav-actions a {
-                font-size: .65rem;
-                padding: .25rem .3rem;
+                font-size: .62rem;
+                padding: .25rem .30rem;
             }
 
             .nav-actions a.nav-utility {
-                padding: .25rem .35rem;
+                padding: .25rem .32rem;
             }
 
             .nav-actions a.nav-cta {
-                padding: .3rem .45rem;
-                font-size: .65rem;
+                padding: .28rem .40rem;
+                font-size: .62rem;
             }
 
             footer {
-                padding: 1.5rem 0;
+                padding: 1.2rem 0;
+            }
+
+            footer h2 {
+                font-size: 1.2rem;
+                margin-bottom: .5rem;
+            }
+
+            footer p {
+                font-size: .78rem;
+                margin: .3rem 0;
             }
 
             .main-nav {
                 width: 80%;
                 max-width: 260px;
-                padding-top: .8rem;
+                padding-top: .7rem;
                 top: 0;
             }
 
             .main-nav a {
-                padding: .55rem .9rem;
-                font-size: .85rem;
+                padding: .50rem .85rem;
+                font-size: .80rem;
                 border-bottom: 1px solid rgba(255,255,255,.1);
             }
         }
