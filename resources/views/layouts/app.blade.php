@@ -67,12 +67,53 @@
             left: -110px;
         }
 
-        .top-nav {
-            display: grid;
-            grid-template-columns: auto 1fr auto;
+        .site-topbar {
+            display: flex;
             align-items: center;
-            gap: .85rem;
-            margin-bottom: 2.4rem;
+            justify-content: space-between;
+            gap: .8rem;
+            margin-bottom: .85rem;
+            background: rgba(255,255,255,.14);
+            border: 1px solid rgba(255,255,255,.16);
+            border-radius: 12px;
+            padding: .42rem .85rem;
+            color: #f8fafc;
+            font-size: .82rem;
+            line-height: 1.2;
+            backdrop-filter: blur(4px);
+        }
+
+        .site-topbar .topbar-center {
+            text-align: center;
+            flex: 1;
+            min-width: 180px;
+        }
+
+        .site-topbar .topbar-title {
+            font-weight: 700;
+            letter-spacing: .03em;
+            text-transform: uppercase;
+            font-size: .82rem;
+        }
+
+        .site-topbar .topbar-subtitle {
+            font-size: .74rem;
+            opacity: .9;
+            margin-top: .08rem;
+        }
+
+        .site-topbar a {
+            color: #fff;
+            text-decoration: none;
+            border-bottom: 1px dashed rgba(255,255,255,.65);
+        }
+
+        .top-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: .9rem;
+            margin-bottom: 1.8rem;
             position: relative;
             z-index: 1;
             background: rgba(6, 12, 24, .2);
@@ -83,13 +124,31 @@
         }
 
         .brand {
-            display: grid;
-            gap: .03rem;
+            display: flex;
+            align-items: center;
+            gap: .56rem;
             text-decoration: none;
             color: #f8fafc;
             white-space: nowrap;
-            align-items: center;
-            min-height: 42px;
+            min-height: 46px;
+        }
+
+        .brand-text {
+            display: inline-flex;
+            flex-direction: column;
+            line-height: 1.08;
+        }
+
+        .brand-mark{
+            font-weight: 800;
+            letter-spacing: .02em;
+            font-size: 1.05rem;
+        }
+
+        .brand-sub {
+            font-size: .74rem;
+            color: #cbd5e1;
+            line-height: 1.2;
         }
 
         .brand-logo {

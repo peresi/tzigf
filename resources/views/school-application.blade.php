@@ -3,6 +3,14 @@
 @section('content')
 <header class="site-header">
     <div class="container">
+        <div class="site-topbar">
+            <div class="topbar-left">Established 2020</div>
+            <div class="topbar-center">
+                <div class="topbar-title">Tanzania Internet Governance Forum</div>
+                <div class="topbar-subtitle">Building inclusive, multistakeholder internet policy for Tanzania</div>
+            </div>
+            <div class="topbar-right"><a href="mailto:info@tzigf.or.tz">info@tzigf.or.tz</a></div>
+        </div>
         <div class="top-nav">
             <a class="brand" href="{{ route('home') }}" aria-label="Go to home">
                 <img class="brand-logo" src="{{ asset('TZIGF OFFICIAL LOGO edit (1)_page-0001.jpg') }}" alt="TzIGF logo">
