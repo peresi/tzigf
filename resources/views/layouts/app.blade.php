@@ -124,15 +124,16 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: .9rem;
-            margin-bottom: 1.8rem;
+            gap: .65rem;
+            margin-bottom: 1.6rem;
             position: relative;
-            z-index: 1;
-            background: rgba(6, 12, 24, .2);
-            border: 1px solid rgba(255,255,255,.16);
-            border-radius: 14px;
-            padding: .62rem .78rem;
-            backdrop-filter: blur(5px);
+            z-index: 20;
+            background: rgba(5, 15, 30, .55);
+            border: 1px solid rgba(255,255,255,.18);
+            border-radius: 999px;
+            padding: .52rem .9rem;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 4px 18px rgba(0,0,0,.16);
         }
 
         .brand {
@@ -222,33 +223,54 @@
         }
 
         .main-nav {
+            flex: 1;
             display: flex;
             flex-wrap: wrap;
-            gap: .12rem;
+            align-items: center;
             justify-content: center;
+            gap: .45rem;
+            margin: 0 .65rem;
+            min-height: 46px;
         }
 
         .main-nav a {
-            color: #f8fafc;
+            color: #eceff3;
             text-decoration: none;
-            padding: .42rem .62rem;
-            border-radius: 8px;
-            font-size: .84rem;
-            font-weight: 500;
-            letter-spacing: .01em;
-            transition: .18s ease;
+            padding: .42rem .68rem;
+            border-radius: 10px;
+            font-size: .86rem;
+            font-weight: 600;
+            letter-spacing: .02em;
+            transition: .15s ease;
+            border: 1px solid transparent;
         }
 
         .main-nav a:hover {
-            background: rgba(255,255,255,.12);
+            background: rgba(255,255,255,.20);
             color: #ffffff;
+            border-color: rgba(255,255,255,.45);
         }
 
         .main-nav a.is-active,
         .main-nav a[aria-current="page"] {
-            background: rgba(255,255,255,.22);
+            background: rgba(255,255,255,.28);
             color: #ffffff;
             font-weight: 700;
+            border-color: rgba(255,255,255,.60);
+        }
+
+        .main-nav a.nav-cta {
+            background: #fff;
+            color: #0f172a;
+            border: 1px solid #fff;
+            font-weight: 700;
+            padding: .48rem .78rem;
+            border-radius: 999px;
+        }
+
+        .main-nav a.nav-cta:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 18px rgba(3, 7, 33, .22);
         }
 
         .nav-actions {
@@ -564,7 +586,8 @@
                 background: linear-gradient(180deg, #0f766e, #0b5f57);
                 flex-direction: column;
                 gap: 0;
-                padding: 0;
+                padding: 0 !important;
+                margin: 0 !important;
                 border-radius: 0;
                 border: none;
                 z-index: 100;
@@ -594,19 +617,8 @@
                 font-size: 1.5rem;
                 padding: .2rem .4rem;
             }
-            .nav-actions { 
-                gap: .35rem;
-                align-items: center;
-                flex-wrap: wrap;
-                position: relative;
-                right: auto;
-                top: auto;
-                height: auto;
-                justify-content: flex-end;
-                background: transparent;
-                padding: 0;
-                width: auto;
-                z-index: 99;
+            .nav-actions {
+                display: none;
             }
             .section { padding: 2.2rem 0; }
         }
@@ -728,15 +740,7 @@
             }
 
             .nav-actions {
-                gap: .25rem;
-                flex-direction: row;
-                flex-wrap: wrap;
-                width: auto;
-                align-items: stretch;
-                position: relative;
-                right: auto;
-                top: auto;
-                background: transparent;
+                display: none;
             }
 
             .nav-actions a {
@@ -752,9 +756,19 @@
             .main-nav {
                 width: 70%;
                 max-width: 280px;
-                padding-top: 1rem;
+                padding-top: 0 !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                top: 0 !important;
             }
             
+            .main-nav.active {
+                padding-top: 0 !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                top: 0 !important;
+            }
+
             .main-nav a {
                 padding: .65rem 1rem;
                 font-size: .88rem;
@@ -911,14 +925,7 @@
             }
 
             .nav-actions {
-                gap: .20rem;
-                flex-direction: row;
-                flex-wrap: wrap;
-                position: relative;
-                right: auto;
-                top: auto;
-                width: auto;
-                background: transparent;
+                display: none;
             }
 
             .nav-actions a {
@@ -952,7 +959,7 @@
             .main-nav {
                 width: 80%;
                 max-width: 260px;
-                padding-top: .7rem;
+                padding-top: 0 !important;
                 top: 0;
             }
 
@@ -987,10 +994,14 @@
                 // Close menu when a link is clicked
                 const navLinks = mainNav.querySelectorAll('a');
                 navLinks.forEach(link => {
-                    link.addEventListener('click', function() {
-                        mainNav.classList.remove('active');
-                        overlay.classList.remove('active');
-                        menuToggle.setAttribute('aria-expanded', 'false');
+                    link.addEventListener('click', function(event) {
+                        // for in-page anchor navigation (e.g., #section), leave menu open
+                        if (link.hash && link.pathname === window.location.pathname) {
+                            return;
+                        }
+
+                        // for route changes, do not immediately close because the page will reload
+                        // this avoids jarring behavior in some browsers where closing interrupts navigation
                     });
                 });
 
