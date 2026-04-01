@@ -3,35 +3,7 @@
 @section('content')
 <header class="site-header">
     <div class="container">
-        <div class="site-topbar">
-            <div class="topbar-left">Established 2020</div>
-            <div class="topbar-center">
-                <div class="topbar-title">Tanzania Internet Governance Forum</div>
-                <div class="topbar-subtitle">Building inclusive, multistakeholder internet policy for Tanzania</div>
-            </div>
-            <div class="topbar-right"><a href="mailto:info@tzigf.or.tz">info@tzigf.or.tz</a></div>
-        </div>
-        <div class="top-nav">
-            <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
-            <a class="brand" href="{{ route('home') }}" aria-label="Go to home">
-                <img class="brand-logo" src="{{ asset('TZIGF OFFICIAL LOGO edit (1)_page-0001.jpg') }}" alt="TzIGF logo">
-                <span class="sr-only">Tanzania IGF</span>
-                <span class="brand-sub">Tanzania Internet Governance Forum</span>
-            </a>
-            <nav class="main-nav" aria-label="Main Navigation"></nav>
-            <div class="nav-actions">
-                <a class="nav-utility" href="{{ route('home') }}" class="{{ request()->routeIs('home') ? 'is-active' : '' }}">Home</a>
-                <a class="nav-utility" href="{{ route('tsig') }}">TzSIG</a>
-                <a class="nav-utility" href="{{ route('tzmag') }}">TzMAG</a>
-                <a class="nav-cta" href="{{ route('school.application') }}">Apply for Fellowship</a>
-                <a class="nav-utility" href="{{ route('gallery') }}">Gallery</a>
-                @auth
-                    <a href="{{ route('admin.dashboard') }}">Admin Dashboard</a>
-                @else
-                    <a href="{{ route('admin.login') }}">Admin Login</a>
-                @endauth
-            </div>
-        </div>
+        @include('partials.site-navigation')
 
         <div class="hero">
             <div>
@@ -88,13 +60,5 @@
     </section>
 </main>
 
-<footer id="contact">
-    <div class="container">
-        <h2>Contact</h2>
-        <p>Tanzania Internet Governance Forum Secretariat</p>
-        <p>📧 <a href="mailto:info@tzigf.or.tz">info@tzigf.or.tz</a></p>
-        <p>🌐 <a href="https://www.tzigf.or.tz" target="_blank" rel="noopener">www.tzigf.or.tz</a></p>
-        <p>Follow us on social media for updates.</p>
-    </div>
-</footer>
+@include('partials.site-footer')
 @endsection

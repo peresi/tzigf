@@ -12,9 +12,28 @@ class HomeController extends Controller
     public function index()
     {
         return view('home', [
-            'reports' => Report::query()->latest('report_year')->latest()->get(),
-            'mediaNews' => MediaNews::query()->latest('published_at')->latest()->get(),
+            'reports' => Report::query()->latest('report_year')->latest()->limit(4)->get(),
+            'mediaNews' => MediaNews::query()->latest('published_at')->latest()->limit(3)->get(),
+        ]);
+    }
+
+    public function about()
+    {
+        return view('about');
+    }
+
+    public function whatWeDo()
+    {
+        return view('what-we-do', [
+            'mediaNews' => MediaNews::query()->latest('published_at')->latest()->limit(6)->get(),
             'tigwItems' => TigwItem::query()->orderBy('display_order')->latest()->get(),
+        ]);
+    }
+
+    public function reportsIndex()
+    {
+        return view('reports', [
+            'reports' => Report::query()->latest('report_year')->latest()->get(),
         ]);
     }
 

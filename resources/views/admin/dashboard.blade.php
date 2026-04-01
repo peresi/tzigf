@@ -46,5 +46,21 @@
             <a class="btn btn-primary" href="{{ route('admin.tsig-applications.index') }}">Open Applications</a>
         </div>
     </div>
+
+    <div class="card" style="margin-bottom:0;">
+        <h3>Public Input Submissions</h3>
+        <p class="muted-text">Review agenda suggestions and policy issues submitted by stakeholders for TzIGF 2026.</p>
+        <div class="actions">
+            <a class="btn btn-primary" href="{{ route('admin.public-input-submissions.index') }}">Open Submissions</a>
+        </div>
+    </div>
+
+    <div class="card" style="margin-bottom:0;">
+        <h3>Session Proposals</h3>
+        <p class="muted-text">Manage proposed sessions, moderators, speakers, and optional supporting documents.</p>
+        <div class="actions">
+            <a class="btn btn-primary" href="{{ route('admin.session-proposals.index') }}">Open Proposals</a>
+        </div>
+    </div>
 </div>
 @endsection

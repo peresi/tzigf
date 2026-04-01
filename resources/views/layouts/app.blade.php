@@ -30,6 +30,10 @@
             line-height: 1.65;
         }
 
+        body.nav-open {
+            overflow: hidden;
+        }
+
         a { color: inherit; }
 
         .container { width: min(1140px, 100%); margin: 0 auto; padding: 0 1rem; }
@@ -144,6 +148,7 @@
             color: #f8fafc;
             white-space: nowrap;
             min-height: 46px;
+            flex: 0 0 auto;
         }
 
         .brand-text {
@@ -159,9 +164,12 @@
         }
 
         .brand-sub {
-            font-size: .74rem;
-            color: #cbd5e1;
-            line-height: 1.2;
+            font-size: .98rem;
+            color: #f8fafc;
+            line-height: 1;
+            font-weight: 800;
+            letter-spacing: .04em;
+            text-transform: uppercase;
         }
 
         .brand-logo {
@@ -190,8 +198,9 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, .5);
-            z-index: 99;
+            background: rgba(2, 6, 23, .58);
+            backdrop-filter: blur(2px);
+            z-index: 9998;
         }
 
         .menu-overlay.active {
@@ -213,27 +222,70 @@
 
         .menu-toggle {
             display: none;
-            background: none;
-            border: none;
+            background: rgba(255,255,255,.08);
+            border: 1px solid rgba(255,255,255,.18);
+            border-radius: 10px;
             color: #f8fafc;
             font-size: 1.4rem;
             cursor: pointer;
-            padding: .3rem .5rem;
+            min-width: 42px;
+            min-height: 42px;
+            padding: .2rem .45rem;
             z-index: 101;
         }
 
-        .main-nav {
+        .menu-close {
+            display: none;
+            background: rgba(255,255,255,.08);
+            border: 1px solid rgba(255,255,255,.16);
+            color: #f8fafc;
+            border-radius: 10px;
+            min-width: 42px;
+            min-height: 42px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .mobile-nav-head {
+            display: none;
+        }
+
+        .mobile-nav-brand {
+            display: flex;
+            align-items: center;
+            gap: .7rem;
+        }
+
+        .mobile-nav-brand-copy {
+            display: grid;
+            gap: .05rem;
+            line-height: 1.1;
+        }
+
+        .mobile-nav-brand-copy strong {
+            font-size: .98rem;
+            color: #ecfeff;
+        }
+
+        .mobile-nav-brand-copy span {
+            font-size: .72rem;
+            color: rgba(226, 232, 240, .88);
+            text-transform: uppercase;
+            letter-spacing: .06em;
+        }
+
+        .desktop-nav {
             flex: 1;
             display: flex;
             flex-wrap: wrap;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-end;
             gap: .45rem;
-            margin: 0 .65rem;
+            margin: 0 0 0 auto;
             min-height: 46px;
         }
 
-        .main-nav a {
+        .desktop-nav a {
             color: #eceff3;
             text-decoration: none;
             padding: .42rem .68rem;
@@ -245,21 +297,21 @@
             border: 1px solid transparent;
         }
 
-        .main-nav a:hover {
+        .desktop-nav a:hover {
             background: rgba(255,255,255,.20);
             color: #ffffff;
             border-color: rgba(255,255,255,.45);
         }
 
-        .main-nav a.is-active,
-        .main-nav a[aria-current="page"] {
+        .desktop-nav a.is-active,
+        .desktop-nav a[aria-current="page"] {
             background: rgba(255,255,255,.28);
             color: #ffffff;
             font-weight: 700;
             border-color: rgba(255,255,255,.60);
         }
 
-        .main-nav a.nav-cta {
+        .desktop-nav a.nav-cta {
             background: #fff;
             color: #0f172a;
             border: 1px solid #fff;
@@ -268,9 +320,110 @@
             border-radius: 999px;
         }
 
-        .main-nav a.nav-cta:hover {
+        .desktop-nav a.nav-cta:hover {
             transform: translateY(-1px);
             box-shadow: 0 8px 18px rgba(3, 7, 33, .22);
+        }
+
+        .mobile-nav-drawer {
+            display: none;
+        }
+
+        .nav-dropdown {
+            position: relative;
+        }
+
+        .nav-dropdown summary {
+            list-style: none;
+            color: #eceff3;
+            padding: .42rem .68rem;
+            border-radius: 999px;
+            font-size: .86rem;
+            font-weight: 700;
+            letter-spacing: .02em;
+            transition: .15s ease;
+            border: 1px solid rgba(255,255,255,.55);
+            background: #fff;
+            color: #0f172a;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: .45rem;
+            white-space: nowrap;
+        }
+
+        .nav-dropdown summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .nav-dropdown summary::after {
+            content: "";
+            width: .5rem;
+            height: .5rem;
+            border-right: 2px solid currentColor;
+            border-bottom: 2px solid currentColor;
+            transform: rotate(45deg) translateY(-1px);
+            transition: transform .15s ease;
+        }
+
+        .nav-dropdown[open] summary::after {
+            transform: rotate(-135deg) translateY(-1px);
+        }
+
+        .nav-dropdown summary:hover,
+        .nav-dropdown[open] summary,
+        .nav-dropdown.is-active summary {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 18px rgba(3, 7, 33, .22);
+        }
+
+        .nav-dropdown.is-active summary {
+            background: rgba(255,255,255,.28);
+            color: #ffffff;
+            border-color: rgba(255,255,255,.60);
+        }
+
+        .nav-dropdown-menu {
+            position: absolute;
+            top: calc(100% + .45rem);
+            left: 50%;
+            transform: translateX(-50%);
+            min-width: 260px;
+            padding: .5rem;
+            border-radius: 14px;
+            background: rgba(8, 15, 30, .96);
+            border: 1px solid rgba(255,255,255,.18);
+            box-shadow: 0 20px 40px rgba(2, 6, 23, .28);
+            backdrop-filter: blur(10px);
+            display: grid;
+            gap: .25rem;
+            z-index: 120;
+        }
+
+        .nav-dropdown-menu a,
+        .nav-dropdown-menu span {
+            display: block;
+            width: 100%;
+            text-decoration: none;
+            color: #f8fafc;
+            padding: .68rem .8rem;
+            border-radius: 10px;
+            border: 1px solid transparent;
+            font-size: .84rem;
+            font-weight: 600;
+            line-height: 1.35;
+            background: transparent;
+        }
+
+        .nav-dropdown-menu a:hover {
+            background: rgba(255,255,255,.10);
+            border-color: rgba(255,255,255,.18);
+        }
+
+        .nav-dropdown-menu .is-disabled {
+            color: #cbd5e1;
+            opacity: .78;
+            cursor: not-allowed;
         }
 
         .nav-actions {
@@ -568,54 +721,158 @@
         footer a { color: #93c5fd; }
 
         @media (max-width: 920px) {
+            .site-header {
+                overflow: visible;
+                isolation: isolate;
+            }
             .hero { grid-template-columns: 1fr; }
             .grid-2 { grid-template-columns: 1fr; }
             .top-nav {
-                grid-template-columns: auto 1fr auto;
+                display: flex;
                 align-items: center;
+                justify-content: space-between;
                 gap: .6rem;
+                position: relative;
+                overflow: visible;
+                backdrop-filter: none;
+                z-index: auto;
             }
-            .main-nav { 
+            .brand {
+                flex: 1;
+                min-width: 0;
+            }
+            .desktop-nav {
                 display: none;
+            }
+            .mobile-nav-drawer { 
+                display: flex;
                 position: fixed;
-                left: 0;
-                top: 0;
-                width: 75%;
-                max-width: 320px;
-                height: 100vh;
-                background: linear-gradient(180deg, #0f766e, #0b5f57);
+                inset: 0 auto 0 0;
+                width: min(82vw, 320px);
+                max-width: calc(100vw - 3rem);
+                height: 100dvh;
+                background:
+                    linear-gradient(180deg, rgba(9, 23, 45, .98), rgba(11, 95, 87, .98) 42%, rgba(20, 83, 45, .98)),
+                    radial-gradient(circle at top right, rgba(153, 246, 228, .12), transparent 34%);
                 flex-direction: column;
                 gap: 0;
-                padding: 0 !important;
+                align-items: stretch;
+                justify-content: flex-start;
+                padding: .85rem 0 1.2rem !important;
                 margin: 0 !important;
                 border-radius: 0;
                 border: none;
-                z-index: 100;
+                z-index: 9999;
                 overflow-y: auto;
+                overscroll-behavior: contain;
                 backdrop-filter: blur(10px);
-                transform: translateX(-100%);
-                transition: transform .3s ease;
+                visibility: hidden;
+                pointer-events: none;
+                transform: translate3d(-104%, 0, 0);
+                transition: transform .28s ease;
+                box-shadow: 18px 0 48px rgba(2, 6, 23, .34);
+                will-change: transform;
             }
-            .main-nav.active {
+            .mobile-nav-drawer.active {
+                visibility: visible;
+                pointer-events: auto;
+                transform: translate3d(0, 0, 0);
+            }
+            .mobile-nav-head {
                 display: flex;
-                transform: translateX(0);
+                align-items: center;
+                justify-content: space-between;
+                gap: .8rem;
+                padding: 0 1rem .9rem;
+                margin: 0 0 .25rem;
+                border-bottom: 1px solid rgba(255,255,255,.12);
+                position: sticky;
+                top: 0;
+                z-index: 2;
+                background: linear-gradient(180deg, rgba(9, 23, 45, .98), rgba(11, 95, 87, .96));
             }
-            .main-nav a {
-                padding: .75rem 1.2rem;
-                border-radius: 0;
-                text-align: left;
-                font-size: .95rem;
-                width: 100%;
-                border-bottom: 1px solid rgba(255,255,255,.1);
+            .menu-close {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                background: rgba(255,255,255,.10);
+                border-color: rgba(255,255,255,.18);
                 color: #f8fafc;
             }
-            .main-nav a:hover {
+            .mobile-nav-links {
+                display: grid;
+            }
+            .mobile-nav-drawer a {
+                padding: .92rem 1.1rem;
+                border-radius: 0;
+                text-align: left;
+                font-size: 1rem;
+                width: 100%;
+                border-bottom: 1px solid rgba(255,255,255,.10);
+                color: #ecfeff;
+                text-decoration: none;
+                position: relative;
+                z-index: 1;
+            }
+            .mobile-nav-drawer a:hover {
                 background: rgba(255,255,255,.08);
+                color: #ffffff;
+            }
+            .mobile-nav-drawer a.is-active,
+            .mobile-nav-drawer a[aria-current="page"] {
+                background: rgba(255,255,255,.16);
+                color: #ffffff;
+                border-color: rgba(255,255,255,.2);
+            }
+            .mobile-nav-drawer .nav-dropdown {
+                width: 100%;
+            }
+            .mobile-nav-drawer .nav-dropdown summary {
+                width: 100%;
+                justify-content: space-between;
+                border-radius: 0;
+                padding: .92rem 1.1rem;
+                font-size: 1rem;
+                border: 0;
+                border-bottom: 1px solid rgba(255,255,255,.10);
+                background: transparent;
+                color: #ecfeff;
+                box-shadow: none;
+                position: relative;
+                z-index: 1;
+            }
+            .mobile-nav-drawer .nav-dropdown.is-active summary,
+            .mobile-nav-drawer .nav-dropdown[open] summary,
+            .mobile-nav-drawer .nav-dropdown summary:hover {
+                transform: none;
+                box-shadow: none;
+                background: rgba(255,255,255,.08);
+                color: #ffffff;
+            }
+            .mobile-nav-drawer .nav-dropdown-menu {
+                position: static;
+                transform: none;
+                min-width: 100%;
+                padding: .2rem 0 .5rem;
+                border: 0;
+                border-radius: 0;
+                background: rgba(255,255,255,.04);
+                box-shadow: none;
+            }
+            .mobile-nav-drawer .nav-dropdown-menu a,
+            .mobile-nav-drawer .nav-dropdown-menu span {
+                padding: .8rem 1.7rem;
+                border-radius: 0;
+                font-size: .9rem;
+                border-bottom: 1px solid rgba(255,255,255,.08);
+                color: #dbeafe;
+                text-decoration: none;
             }
             .menu-toggle {
                 display: block;
                 font-size: 1.5rem;
                 padding: .2rem .4rem;
+                flex: 0 0 auto;
             }
             .nav-actions {
                 display: none;
@@ -662,13 +919,12 @@
             }
 
             .top-nav {
-                grid-template-columns: auto 1fr auto;
-                gap: .35rem;
-                padding: .4rem .5rem;
+                gap: .45rem;
+                padding: .45rem .55rem;
                 border-radius: 10px;
                 margin-bottom: 1.2rem;
                 position: relative;
-                z-index: 50;
+                z-index: auto;
             }
 
             .brand {
@@ -681,11 +937,13 @@
             }
 
             .brand-mark { font-size: 0.88rem; }
-            .brand-sub { font-size: .60rem; }
+            .brand-sub { font-size: .78rem; }
 
             .menu-toggle {
                 font-size: 1.3rem;
-                padding: .2rem .35rem;
+                min-width: 40px;
+                min-height: 40px;
+                padding: .15rem .3rem;
             }
 
             .hero {
@@ -753,25 +1011,23 @@
                 font-size: .70rem;
             }
             
-            .main-nav {
-                width: 70%;
-                max-width: 280px;
-                padding-top: 0 !important;
-                padding: 0 !important;
-                margin: 0 !important;
-                top: 0 !important;
-            }
-            
-            .main-nav.active {
-                padding-top: 0 !important;
-                padding: 0 !important;
-                margin: 0 !important;
-                top: 0 !important;
+            .mobile-nav-drawer {
+                width: min(84vw, 310px);
+                padding: .75rem 0 1rem !important;
             }
 
-            .main-nav a {
-                padding: .65rem 1rem;
-                font-size: .88rem;
+            .mobile-nav-drawer a {
+                padding: .82rem 1rem;
+                font-size: .9rem;
+            }
+            .mobile-nav-drawer .nav-dropdown summary {
+                padding: .82rem 1rem;
+                font-size: .9rem;
+            }
+            .mobile-nav-drawer .nav-dropdown-menu a,
+            .mobile-nav-drawer .nav-dropdown-menu span {
+                padding: .68rem 1.5rem;
+                font-size: .84rem;
             }
         }
 
@@ -807,13 +1063,12 @@
             }
 
             .top-nav {
-                grid-template-columns: auto 1fr auto;
-                gap: .3rem;
+                gap: .35rem;
                 padding: .35rem .45rem;
                 border-radius: 8px;
                 margin-bottom: 1rem;
                 position: relative;
-                z-index: 50;
+                z-index: auto;
             }
 
             .brand {
@@ -830,7 +1085,9 @@
 
             .menu-toggle {
                 font-size: 1.1rem;
-                padding: .15rem .3rem;
+                min-width: 38px;
+                min-height: 38px;
+                padding: .1rem .25rem;
             }
 
             .hero {
@@ -956,24 +1213,35 @@
                 margin: .3rem 0;
             }
 
-            .main-nav {
-                width: 80%;
-                max-width: 260px;
-                padding-top: 0 !important;
-                top: 0;
+            .mobile-nav-drawer {
+                width: min(86vw, 292px);
+                padding-top: .65rem !important;
             }
 
-            .main-nav a {
-                padding: .50rem .85rem;
+            .mobile-nav-drawer a {
+                padding: .72rem .9rem;
                 font-size: .80rem;
                 border-bottom: 1px solid rgba(255,255,255,.1);
+            }
+            .mobile-nav-drawer .nav-dropdown summary {
+                padding: .72rem .9rem;
+                font-size: .80rem;
+            }
+            .mobile-nav-drawer .nav-dropdown-menu a,
+            .mobile-nav-drawer .nav-dropdown-menu span {
+                padding: .62rem 1.2rem;
+                font-size: .78rem;
+            }
+            .mobile-nav-head {
+                padding: 0 .9rem .8rem;
             }
         }
     </style>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const menuToggle = document.querySelector('.menu-toggle');
-            const mainNav = document.querySelector('.main-nav');
+            const menuClose = document.querySelector('.menu-close');
+            const mobileDrawer = document.querySelector('.mobile-nav-drawer');
             let overlay = document.querySelector('.menu-overlay');
             
             // Create overlay if it doesn't exist
@@ -983,41 +1251,79 @@
                 document.body.appendChild(overlay);
             }
             
-            if (menuToggle && mainNav) {
-                menuToggle.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    mainNav.classList.toggle('active');
-                    overlay.classList.toggle('active');
-                    menuToggle.setAttribute('aria-expanded', mainNav.classList.contains('active'));
+            if (menuToggle && mobileDrawer) {
+                if (mobileDrawer.parentElement !== document.body) {
+                    document.body.appendChild(mobileDrawer);
+                }
+
+                const setMenuState = function(isOpen) {
+                    mobileDrawer.classList.toggle('active', isOpen);
+                    overlay.classList.toggle('active', isOpen);
+                    document.body.classList.toggle('nav-open', isOpen);
+                    menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+                };
+
+                const closeMenu = function() {
+                    setMenuState(false);
+                    closeDropdowns();
+                };
+
+                const dropdowns = mobileDrawer.querySelectorAll('.nav-dropdown');
+                const navLinks = mobileDrawer.querySelectorAll('a');
+                const closeDropdowns = function(except) {
+                    dropdowns.forEach(dropdown => {
+                        if (dropdown !== except) {
+                            dropdown.removeAttribute('open');
+                        }
+                    });
+                };
+
+                dropdowns.forEach(dropdown => {
+                    dropdown.addEventListener('toggle', function() {
+                        if (dropdown.open) {
+                            closeDropdowns(dropdown);
+                        }
+                    });
                 });
 
-                // Close menu when a link is clicked
-                const navLinks = mainNav.querySelectorAll('a');
-                navLinks.forEach(link => {
-                    link.addEventListener('click', function(event) {
-                        // for in-page anchor navigation (e.g., #section), leave menu open
-                        if (link.hash && link.pathname === window.location.pathname) {
-                            return;
-                        }
+                menuToggle.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const isOpen = !mobileDrawer.classList.contains('active');
+                    setMenuState(isOpen);
 
-                        // for route changes, do not immediately close because the page will reload
-                        // this avoids jarring behavior in some browsers where closing interrupts navigation
+                    if (!isOpen) {
+                        closeDropdowns();
+                    }
+                });
+
+                if (menuClose) {
+                    menuClose.addEventListener('click', function() {
+                        closeMenu();
+                    });
+                }
+
+                navLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        if (window.innerWidth <= 920) {
+                            closeMenu();
+                        }
                     });
                 });
 
                 // Close menu when clicking overlay
                 overlay.addEventListener('click', function() {
-                    mainNav.classList.remove('active');
-                    overlay.classList.remove('active');
-                    menuToggle.setAttribute('aria-expanded', 'false');
+                    closeMenu();
                 });
 
-                // Close menu when clicking outside
-                document.addEventListener('click', function(event) {
-                    if (!event.target.closest('.top-nav') && !event.target.closest('.main-nav') && mainNav.classList.contains('active')) {
-                        mainNav.classList.remove('active');
-                        overlay.classList.remove('active');
-                        menuToggle.setAttribute('aria-expanded', 'false');
+                document.addEventListener('keydown', function(event) {
+                    if (event.key === 'Escape' && mobileDrawer.classList.contains('active')) {
+                        closeMenu();
+                    }
+                });
+
+                window.addEventListener('resize', function() {
+                    if (window.innerWidth > 920 && mobileDrawer.classList.contains('active')) {
+                        closeMenu();
                     }
                 });
             }

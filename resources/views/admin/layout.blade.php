@@ -346,6 +346,9 @@
                     <a href="{{ route('admin.media-news.index') }}" class="{{ request()->routeIs('admin.media-news.*') ? 'active' : '' }}">Media & News</a>
                     <a href="{{ route('admin.tigw-items.index') }}" class="{{ request()->routeIs('admin.tigw-items.*') ? 'active' : '' }}">TIGW Items</a>
                     <a href="{{ route('admin.school-applicants.index') }}" class="{{ request()->routeIs('admin.school-applicants.*') ? 'active' : '' }}">School Applicants</a>
+                    <a href="{{ route('admin.tsig-applications.index') }}" class="{{ request()->routeIs('admin.tsig-applications.*') ? 'active' : '' }}">TzSIG Applicants</a>
+                    <a href="{{ route('admin.public-input-submissions.index') }}" class="{{ request()->routeIs('admin.public-input-submissions.*') ? 'active' : '' }}">Public Input</a>
+                    <a href="{{ route('admin.session-proposals.index') }}" class="{{ request()->routeIs('admin.session-proposals.*') ? 'active' : '' }}">Session Proposals</a>
                 </nav>
 
                 <div class="sidebar-footer">
@@ -361,7 +364,7 @@
                 <header class="topbar">
                     <div>
                         <h1>{{ $title ?? 'TzIGF Admin Dashboard' }}</h1>
-                        <p>Manage reports, media updates, TIGW content, and school applications.</p>
+                        <p>Manage reports, media updates, TIGW content, fellowship applications, public input, and session proposals.</p>
                     </div>
                 </header>
 
