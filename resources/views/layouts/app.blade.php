@@ -22,6 +22,13 @@
 
         html { scroll-behavior: smooth; }
 
+        html,
+        body {
+            width: 100%;
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
         body {
             margin: 0;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -36,7 +43,19 @@
 
         a { color: inherit; }
 
-        .container { width: min(1140px, 100%); margin: 0 auto; padding: 0 1rem; }
+        .site-header,
+        main,
+        footer {
+            width: 100%;
+            max-width: 100%;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
 
         .site-header {
             background: linear-gradient(130deg, var(--hero-grad-1), #0b5f57 55%, var(--hero-grad-2));
