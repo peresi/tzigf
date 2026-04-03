@@ -7,10 +7,14 @@
     <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:1rem; margin-bottom:1rem;">
         <div class="card" style="margin-bottom:0;">
             <h3>Submitter Information</h3>
+            <p><strong>Submission Type:</strong> {{ $submission->submission_type ?: '—' }}</p>
             <p><strong>Full Name:</strong> {{ $submission->full_name }}</p>
             <p><strong>Organization:</strong> {{ $submission->organization ?: '—' }}</p>
+            <p><strong>Stakeholder Group:</strong> {{ $submission->stakeholder_group ?: '—' }}</p>
             <p><strong>Country:</strong> {{ $submission->country }}</p>
             <p><strong>Email:</strong> {{ $submission->email }}</p>
+            <p><strong>WhatsApp Number:</strong> {{ $submission->whatsapp_number ?: '—' }}</p>
+            <p><strong>Region:</strong> {{ $submission->region ?: '—' }}</p>
             <p><strong>Submitted:</strong> {{ optional($submission->created_at)->format('d M Y H:i') ?? '—' }}</p>
         </div>
 
@@ -26,6 +30,39 @@
     </div>
 
     <div class="card">
+        <h3>Thematic Areas</h3>
+        <ul style="margin:.4rem 0 1rem; padding-left:1.1rem;">
+            @foreach($submission->thematic_areas ?? [] as $area)
+                <li>{{ $area }}</li>
+            @endforeach
+        </ul>
+
+        <h3>Priority Issues</h3>
+        <p style="white-space: pre-line;">{{ $submission->priority_issues ?: '—' }}</p>
+
+        <h3>Additional Input</h3>
+        <p style="white-space: pre-line;">{{ $submission->additional_input ?: '—' }}</p>
+
+        <h3>Implementation &amp; Impact</h3>
+        <p style="white-space: pre-line;">{{ $submission->implementation_impact ?: '—' }}</p>
+
+        <h3>Programme Design Preferences</h3>
+        <ul style="margin:.4rem 0 1rem; padding-left:1.1rem;">
+            @foreach($submission->programme_design ?? [] as $format)
+                <li>{{ $format }}</li>
+            @endforeach
+        </ul>
+
+        <h3>Programme Design Additional Suggestions</h3>
+        <p style="white-space: pre-line;">{{ $submission->programme_design_additional ?: '—' }}</p>
+
+        <h3>Intersessional Activities</h3>
+        <ul style="margin:.4rem 0 1rem; padding-left:1.1rem;">
+            @foreach($submission->intersessional_activities ?? [] as $activity)
+                <li>{{ $activity }}</li>
+            @endforeach
+        </ul>
+
         <h3>Issue Title</h3>
         <p>{{ $submission->issue_title }}</p>
 

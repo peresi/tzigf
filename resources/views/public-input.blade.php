@@ -54,70 +54,135 @@
                 <form method="POST" action="{{ route('public-input.submit') }}">
                     @csrf
 
-                    <h3 style="margin-top:0;">Section 1: Basic Information</h3>
+                    <h3 style="margin-top:0;">Section 1: Respondent Information</h3>
                     <div class="grid-2">
+                        <div>
+                            <label for="submission_type" style="display:block; font-weight:600; margin-bottom:.35rem;">Submission Type *</label>
+                            <select id="submission_type" name="submission_type" required style="width:100%; border:1px solid var(--line); border-radius:10px; padding:.62rem .72rem;">
+                                <option value="">Select submission type</option>
+                                <option value="Individual" @selected(old('submission_type') === 'Individual')>Individual</option>
+                                <option value="Organization" @selected(old('submission_type') === 'Organization')>Organization</option>
+                            </select>
+                        </div>
                         <div>
                             <label for="full_name" style="display:block; font-weight:600; margin-bottom:.35rem;">Full Name *</label>
                             <input id="full_name" name="full_name" type="text" value="{{ old('full_name') }}" required style="width:100%; border:1px solid var(--line); border-radius:10px; padding:.62rem .72rem;">
                         </div>
                         <div>
-                            <label for="organization" style="display:block; font-weight:600; margin-bottom:.35rem;">Organization / Affiliation</label>
+                            <label for="organization" style="display:block; font-weight:600; margin-bottom:.35rem;">Organization (if applicable)</label>
                             <input id="organization" name="organization" type="text" value="{{ old('organization') }}" style="width:100%; border:1px solid var(--line); border-radius:10px; padding:.62rem .72rem;">
                         </div>
                         <div>
-                            <label for="country" style="display:block; font-weight:600; margin-bottom:.35rem;">Country *</label>
-                            <input id="country" name="country" type="text" value="{{ old('country') }}" required style="width:100%; border:1px solid var(--line); border-radius:10px; padding:.62rem .72rem;">
+                            <label for="stakeholder_group" style="display:block; font-weight:600; margin-bottom:.35rem;">Stakeholder Group Type: *</label>
+                            <select id="stakeholder_group" name="stakeholder_group" required style="width:100%; border:1px solid var(--line); border-radius:10px; padding:.62rem .72rem;">
+                                <option value="">Select stakeholder group</option>
+                                <option value="Government" @selected(old('stakeholder_group') === 'Government')>Government</option>
+                                <option value="Private Sector" @selected(old('stakeholder_group') === 'Private Sector')>Private Sector</option>
+                                <option value="Civil Society" @selected(old('stakeholder_group') === 'Civil Society')>Civil Society</option>
+                                <option value="Technical Community" @selected(old('stakeholder_group') === 'Technical Community')>Technical Community</option>
+                                <option value="Academia / Research" @selected(old('stakeholder_group') === 'Academia / Research')>Academia / Research</option>
+                            </select>
                         </div>
                         <div>
                             <label for="email" style="display:block; font-weight:600; margin-bottom:.35rem;">Email Address *</label>
                             <input id="email" name="email" type="email" value="{{ old('email') }}" required style="width:100%; border:1px solid var(--line); border-radius:10px; padding:.62rem .72rem;">
                         </div>
+                        <div>
+                            <label for="whatsapp_number" style="display:block; font-weight:600; margin-bottom:.35rem;">WhatsApp Number</label>
+                            <input id="whatsapp_number" name="whatsapp_number" type="text" value="{{ old('whatsapp_number') }}" style="width:100%; border:1px solid var(--line); border-radius:10px; padding:.62rem .72rem;">
+                        </div>
+                        <div>
+                            <label for="region" style="display:block; font-weight:600; margin-bottom:.35rem;">Region in Tanzania *</label>
+                            <input id="region" name="region" type="text" value="{{ old('region') }}" required style="width:100%; border:1px solid var(--line); border-radius:10px; padding:.62rem .72rem;">
+                        </div>
                     </div>
 
-                    <h3>Section 2: Issue Proposal</h3>
-                    <div>
-                        <label for="issue_title" style="display:block; font-weight:600; margin-bottom:.35rem;">Title of the Issue *</label>
-                        <input id="issue_title" name="issue_title" type="text" value="{{ old('issue_title') }}" required style="width:100%; border:1px solid var(--line); border-radius:10px; padding:.62rem .72rem;">
-                    </div>
-                    <div style="margin-top:1rem;">
-                        <label for="issue_description" style="display:block; font-weight:600; margin-bottom:.35rem;">Description of the Issue (200-300 words) *</label>
-                        <textarea id="issue_description" name="issue_description" rows="7" required style="width:100%; border:1px solid var(--line); border-radius:10px; padding:.72rem;">{{ old('issue_description') }}</textarea>
-                    </div>
-
-                    <h3>Section 3: Relevance</h3>
-                    <div>
-                        <label for="relevance_to_tanzania" style="display:block; font-weight:600; margin-bottom:.35rem;">Why is this issue important for Tanzania at this time? *</label>
-                        <textarea id="relevance_to_tanzania" name="relevance_to_tanzania" rows="6" required style="width:100%; border:1px solid var(--line); border-radius:10px; padding:.72rem;">{{ old('relevance_to_tanzania') }}</textarea>
-                    </div>
-
-                    <h3>Section 4: Policy Questions</h3>
-                    <div>
-                        <label for="policy_questions" style="display:block; font-weight:600; margin-bottom:.35rem;">What are the key policy questions that should be discussed? *</label>
-                        <textarea id="policy_questions" name="policy_questions" rows="6" required style="width:100%; border:1px solid var(--line); border-radius:10px; padding:.72rem;">{{ old('policy_questions') }}</textarea>
-                    </div>
-
-                    <h3>Section 5: Stakeholders</h3>
-                    @php
-                        $stakeholderOptions = ['Government / Policymakers', 'Private Sector', 'Civil Society', 'Technical Community', 'Academia / Research Institutions', 'Local Communities', 'Youth', 'Women', 'Journalists / Media'];
-                        $selectedStakeholders = old('stakeholders', []);
-                    @endphp
+                    <h3>Section 2: Thematic Areas</h3>
+                    <p style="margin-top:.1rem; margin-bottom:.75rem;">Which thematic area(s) should TzIGF 2026 focus on? Select up to 3.</p>
+                    @php($selectedThematicAreas = old('thematic_areas', []))
                     <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
-                        @foreach($stakeholderOptions as $option)
+                        @foreach([
+                            'Universal Access & Meaningful Connectivity',
+                            'Digital Literacy, Capacity Building & Inclusion',
+                            'Cybersecurity, Trust & Online Safety',
+                            'Artificial Intelligence & Emerging Technologies Governance',
+                            'Data Protection, Privacy & Digital Rights',
+                            'Digital Economy, Innovation & Local Content',
+                        ] as $option)
                             <label style="display:flex; align-items:flex-start; gap:.5rem; font-weight:500;">
-                                <input type="checkbox" name="stakeholders[]" value="{{ $option }}" @checked(in_array($option, $selectedStakeholders, true)) style="width:auto; margin-top:.25rem;">
+                                <input type="checkbox" name="thematic_areas[]" value="{{ $option }}" @checked(in_array($option, $selectedThematicAreas, true)) style="width:auto; margin-top:.25rem;">
                                 <span>{{ $option }}</span>
                             </label>
                         @endforeach
                     </div>
 
-                    <h3>Section 6: Consent</h3>
+                    <h3>Section 3: Priority Issues</h3>
+                    <div>
+                        <label for="priority_issues" style="display:block; font-weight:600; margin-bottom:.35rem;">From the selected thematic area(s), what specific issues should be prioritized? *</label>
+                        <textarea id="priority_issues" name="priority_issues" rows="6" required style="width:100%; border:1px solid var(--line); border-radius:10px; padding:.72rem;">{{ old('priority_issues') }}</textarea>
+                    </div>
+
+                    <h3>Section 4: Additional Input</h3>
+                    <div>
+                        <label for="additional_input" style="display:block; font-weight:600; margin-bottom:.35rem;">Are there any other emerging issues or challenges that TzIGF should consider?</label>
+                        <textarea id="additional_input" name="additional_input" rows="5" style="width:100%; border:1px solid var(--line); border-radius:10px; padding:.72rem;">{{ old('additional_input') }}</textarea>
+                    </div>
+
+                    <h3>Section 5: Implementation &amp; Impact</h3>
+                    <div>
+                        <label for="implementation_impact" style="display:block; font-weight:600; margin-bottom:.35rem;">How can TzIGF contribute to implementation of national and global digital priorities (e.g., TNBS, Digital Economy Strategy, WSIS, GDC, SDGs)? *</label>
+                        <textarea id="implementation_impact" name="implementation_impact" rows="6" required style="width:100%; border:1px solid var(--line); border-radius:10px; padding:.72rem;">{{ old('implementation_impact') }}</textarea>
+                    </div>
+
+                    <h3>Section 6: Programme Design</h3>
+                    <p style="margin-top:.1rem; margin-bottom:.75rem;">What suggestions do you have for the design of TzIGF 2026? Select all that apply.</p>
+                    @php($selectedProgrammeDesign = old('programme_design', []))
+                    <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
+                        @foreach([
+                            'Workshops',
+                            'Panel Discussions',
+                            'Roundtables (e.g., Policymakers Roundtable)',
+                            'Lightning Talks',
+                            'Community Dialogues (Kijiji/Mtaa level)',
+                            'Hybrid (Online + Physical)',
+                        ] as $option)
+                            <label style="display:flex; align-items:flex-start; gap:.5rem; font-weight:500;">
+                                <input type="checkbox" name="programme_design[]" value="{{ $option }}" @checked(in_array($option, $selectedProgrammeDesign, true)) style="width:auto; margin-top:.25rem;">
+                                <span>{{ $option }}</span>
+                            </label>
+                        @endforeach
+                    </div>
+                    <div style="margin-top:1rem;">
+                        <label for="programme_design_additional" style="display:block; font-weight:600; margin-bottom:.35rem;">Additional suggestions on format and structure</label>
+                        <textarea id="programme_design_additional" name="programme_design_additional" rows="4" style="width:100%; border:1px solid var(--line); border-radius:10px; padding:.72rem;">{{ old('programme_design_additional') }}</textarea>
+                    </div>
+
+                    <h3>Section 7: Intersessional Activities</h3>
+                    <p style="margin-top:.1rem; margin-bottom:.75rem;">What activities should be implemented beyond the Forum (throughout the year)?</p>
+                    @php($selectedIntersessionalActivities = old('intersessional_activities', []))
+                    <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
+                        @foreach([
+                            'Capacity building programmes (e.g., TzSIG)',
+                            'Policy dialogues',
+                            'Community outreach (TzKMIGF)',
+                            'Research & publications',
+                            'Women-focused programmes',
+                        ] as $option)
+                            <label style="display:flex; align-items:flex-start; gap:.5rem; font-weight:500;">
+                                <input type="checkbox" name="intersessional_activities[]" value="{{ $option }}" @checked(in_array($option, $selectedIntersessionalActivities, true)) style="width:auto; margin-top:.25rem;">
+                                <span>{{ $option }}</span>
+                            </label>
+                        @endforeach
+                    </div>
+
+                    <h3>Consent</h3>
                     <label style="display:flex; align-items:flex-start; gap:.5rem; font-weight:500;">
                         <input type="checkbox" name="consent" value="1" @checked(old('consent')) required style="width:auto; margin-top:.25rem;">
                         <span>I agree that my submission may be used for TzIGF programme development and public reporting. *</span>
                     </label>
 
                     <div style="margin-top:1.25rem;">
-                        <button type="submit" class="btn btn-primary">Submit Public Input</button>
+                        <button type="submit" class="btn btn-submit-input">Submit Public Input</button>
                     </div>
                 </form>
             </div>

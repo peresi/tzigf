@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\PublicInputSubmission;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Illuminate\View\View;
 
 class PublicInputController extends Controller
@@ -16,27 +17,74 @@ class PublicInputController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
+        $thematicOptions = [
+            'Universal Access & Meaningful Connectivity',
+            'Digital Literacy, Capacity Building & Inclusion',
+            'Cybersecurity, Trust & Online Safety',
+            'Artificial Intelligence & Emerging Technologies Governance',
+            'Data Protection, Privacy & Digital Rights',
+            'Digital Economy, Innovation & Local Content',
+        ];
+
+        $stakeholderOptions = [
+            'Government',
+            'Private Sector',
+            'Civil Society',
+            'Technical Community',
+            'Academia / Research',
+        ];
+
+        $programmeDesignOptions = [
+            'Workshops',
+            'Panel Discussions',
+            'Roundtables (e.g., Policymakers Roundtable)',
+            'Lightning Talks',
+            'Community Dialogues (Kijiji/Mtaa level)',
+            'Hybrid (Online + Physical)',
+        ];
+
+        $intersessionalOptions = [
+            'Capacity building programmes (e.g., TzSIG)',
+            'Policy dialogues',
+            'Community outreach (TzKMIGF)',
+            'Research & publications',
+            'Women-focused programmes',
+        ];
+
         $data = $request->validate([
+            'submission_type' => ['required', 'in:Individual,Organization'],
             'full_name' => ['required', 'string', 'max:255'],
             'organization' => ['nullable', 'string', 'max:255'],
-            'country' => ['required', 'string', 'max:120'],
+            'stakeholder_group' => ['required', Rule::in($stakeholderOptions)],
             'email' => ['required', 'email', 'max:255'],
-            'issue_title' => ['required', 'string', 'max:255'],
-            'issue_description' => ['required', 'string', function (string $attribute, mixed $value, \Closure $fail): void {
-                $words = str_word_count((string) $value);
-                if ($words < 200 || $words > 300) {
-                    $fail('The issue description must be between 200 and 300 words.');
-                }
-            }],
-            'relevance_to_tanzania' => ['required', 'string'],
-            'policy_questions' => ['required', 'string'],
-            'stakeholders' => ['required', 'array', 'min:1'],
-            'stakeholders.*' => ['in:Government / Policymakers,Private Sector,Civil Society,Technical Community,Academia / Research Institutions,Local Communities,Youth,Women,Journalists / Media'],
+            'whatsapp_number' => ['nullable', 'string', 'max:40'],
+            'region' => ['required', 'string', 'max:120'],
+            'thematic_areas' => ['required', 'array', 'min:1', 'max:3'],
+            'thematic_areas.*' => [Rule::in($thematicOptions)],
+            'priority_issues' => ['required', 'string'],
+            'additional_input' => ['nullable', 'string'],
+            'implementation_impact' => ['required', 'string'],
+            'programme_design' => ['required', 'array', 'min:1'],
+            'programme_design.*' => [Rule::in($programmeDesignOptions)],
+            'programme_design_additional' => ['nullable', 'string'],
+            'intersessional_activities' => ['required', 'array', 'min:1'],
+            'intersessional_activities.*' => [Rule::in($intersessionalOptions)],
             'consent' => ['accepted'],
         ]);
 
+        $summaryTitle = implode(' | ', $data['thematic_areas']);
+        $summaryDescription = $data['priority_issues'];
+        $summaryRelevance = $data['additional_input'] ?: 'N/A';
+        $summaryPolicyQuestions = $data['implementation_impact'];
+
         PublicInputSubmission::create([
             ...$data,
+            'country' => 'Tanzania',
+            'issue_title' => mb_substr($summaryTitle, 0, 255),
+            'issue_description' => $summaryDescription,
+            'relevance_to_tanzania' => $summaryRelevance,
+            'policy_questions' => $summaryPolicyQuestions,
+            'stakeholders' => [$data['stakeholder_group']],
             'status' => 'submitted',
         ]);
 

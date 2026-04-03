@@ -541,6 +541,44 @@
 
         .btn-primary:hover { transform: translateY(-1px); }
 
+        .btn-submit-input {
+            background: linear-gradient(135deg, #0b8a7f, #0f766e);
+            color: #ffffff;
+            border-color: #0b8a7f;
+            font-weight: 700;
+            padding: .72rem 1.25rem;
+            box-shadow: 0 10px 18px rgba(11, 138, 127, .24);
+        }
+
+        .btn-submit-session {
+            background: linear-gradient(135deg, #0b8a7f, #0f766e);
+            color: #ffffff;
+            border-color: #0b8a7f;
+            font-weight: 700;
+            padding: .72rem 1.25rem;
+            box-shadow: 0 10px 18px rgba(11, 138, 127, .24);
+        }
+
+        .btn-submit-input:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 12px 20px rgba(11, 138, 127, .30);
+        }
+
+        .btn-submit-session:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 12px 20px rgba(11, 138, 127, .30);
+        }
+
+        .btn-submit-input:focus-visible {
+            outline: 3px solid rgba(15, 118, 110, .32);
+            outline-offset: 2px;
+        }
+
+        .btn-submit-session:focus-visible {
+            outline: 3px solid rgba(15, 118, 110, .32);
+            outline-offset: 2px;
+        }
+
         .btn-secondary {
             color: #ecfeff;
             border-color: rgba(255,255,255,.45);
@@ -1016,6 +1054,18 @@
                 font-size: .82rem;
             }
 
+            .btn-submit-input {
+                width: 100%;
+                text-align: center;
+                padding: .65rem .95rem;
+            }
+
+            .btn-submit-session {
+                width: 100%;
+                text-align: center;
+                padding: .65rem .95rem;
+            }
+
             .nav-actions {
                 display: none;
             }
@@ -1145,6 +1195,16 @@
             .btn {
                 padding: .40rem .60rem;
                 font-size: .75rem;
+            }
+
+            .btn-submit-input {
+                width: 100%;
+                text-align: center;
+            }
+
+            .btn-submit-session {
+                width: 100%;
+                text-align: center;
             }
 
             .section { 

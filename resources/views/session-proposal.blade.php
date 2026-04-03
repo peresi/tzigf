@@ -173,7 +173,7 @@
                     </label>
 
                     <div style="margin-top:1.25rem;">
-                        <button type="submit" class="btn btn-primary">Submit Session Proposal</button>
+                        <button type="submit" class="btn btn-submit-session">Submit Session Proposal</button>
                     </div>
                 </form>
             </div>
