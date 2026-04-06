@@ -13,6 +13,9 @@
                     Propose a session for TzIGF 2026 and help shape a timely, inclusive, and multistakeholder programme.
                     Provide your proposed topic, format, speakers, and expected outcomes.
                 </p>
+                <p style="margin-top:.85rem;">
+                    <strong>Deadline: 10th May 2026</strong>
+                </p>
             </div>
             <aside class="hero-highlight">
                 <h3>Proposal Checklist</h3>
