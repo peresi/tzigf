@@ -18,7 +18,7 @@
                 <h3>Core Focus</h3>
                 <p>Dialogue</p>
                 <p>Participation</p>
-                <p>Policy learning and coordination</p>
+                <p>Policy learning</p>
             </aside>
         </div>
     </div>
@@ -29,62 +29,54 @@
         <div class="container">
             <div class="section-head">
                 <span class="pill">What We Do</span>
-                <h2>Inclusive dialogue shaping Tanzania's digital future</h2>
-                <p>Through open dialogue and inclusive participation, TzIGF ensures that Tanzania's experiences contribute to regional and global internet governance processes while international developments are reflected in national priorities.</p>
+                <h2>General Purpose</h2>
             </div>
             <div class="surface">
-                <ul class="list-clean">
-                    <li>Convene national internet governance dialogue</li>
-                    <li>Promote inclusive digital participation</li>
-                    <li>Support policy awareness and cooperation</li>
-                    <li>Elevate grassroots and youth voices</li>
-                    <li>Feed Tanzania's perspectives into regional and global arenas</li>
-                </ul>
-            </div>
-        </div>
-    </section>
+                <p>
+                    The Tanzania Internet Governance Forum (TzIGF) serves as the national multistakeholder platform for inclusive dialogue on Internet and Digital Governance. Its core purpose is to provide an open, neutral, and participatory space where stakeholders from government, private sector, civil society, the technical community, academia, media, and the public can engage on public policy issues related to the development, use, and governance of the Internet.
+                </p>
+                <p>
+                    Aligned with the principles of the Global Internet Governance Forum, TzIGF facilitates non-binding, multistakeholder dialogue that strengthens understanding, builds consensus, and promotes collaboration among diverse actors. In the Tanzanian context, it ensures that national Internet governance discussions reflect local realities, development priorities, and the lived experiences of citizens.
+                </p>
+                <p>
+                    TzIGF plays a critical role in bridging global Internet governance processes with national priorities, enabling Tanzania to contribute meaningfully to regional and global discourse while ensuring that global developments are contextualized within the country's socio-economic and policy environment.
+                </p>
 
-    <section class="section alt">
-        <div class="container">
-            <div class="section-head">
-                <span class="pill">Tanzania Internet Governance Week</span>
-                <h2>Multi-platform engagement from communities to policy spaces</h2>
-                <p>TzIGF is implemented within a broader framework known as Tanzania Internet Governance Week (TIGW). The week expands participation across different segments of society so that community realities inform national dialogue.</p>
-            </div>
-
-            <div class="grid">
-                @forelse($tigwItems as $item)
-                    <article class="card">
-                        <h4>{{ $item->title }}</h4>
-                        <p>{{ $item->description }}</p>
-                    </article>
-                @empty
-                    <article class="card">
-                        <h4>Youth Internet Governance Forum (Youth IGF)</h4>
-                        <p>Youth-led discussions on opportunities, innovation, employment, participation, and rights.</p>
-                    </article>
-                    <article class="card">
-                        <h4>Students' Online Safety Education Dialogue</h4>
-                        <p>Engagement among students, teachers, parents, and protection stakeholders to promote digital citizenship, privacy awareness, and safer online learning environments.</p>
-                    </article>
-                    <article class="card">
-                        <h4>Online Safety and Trust Women & Youth Symposium</h4>
-                        <p>Focused exchange on resilience, empowerment, and trusted participation online.</p>
-                    </article>
-                    <article class="card">
-                        <h4>Mtaa/Kijiji Internet Governance Congress</h4>
-                        <p>Community consultations in villages and neighborhoods where citizens share lived experiences of connectivity, affordability, digital services, and risks.</p>
-                    </article>
-                    <article class="card">
-                        <h4>Policymakers Roundtable on Internet & Digital Governance</h4>
-                        <p>High-level discussions among leaders, regulators, legislators, and experts.</p>
-                    </article>
-                @endforelse
-            </div>
-
-            <div class="surface" style="margin-top:1rem;">
-                <h3 style="margin-top:0;">How It Connects</h3>
-                <p style="margin-bottom:0;">Messages from each platform feed into the national forum and inform Tanzania's contributions to regional and global internet governance discussions.</p>
+                <h3>General Objectives</h3>
+                <ol>
+                    <li>
+                        <strong>Facilitate Inclusive Multistakeholder Dialogue</strong>
+                        <p>To provide a structured platform for dialogue among all stakeholders on Internet and Digital Governance issues, ensuring inclusive participation across sectors and communities, including youth, women, and underserved populations.</p>
+                    </li>
+                    <li>
+                        <strong>Inform National Policy and Decision-Making</strong>
+                        <p>To support evidence-based and participatory policy development by generating insights, recommendations, and perspectives that contribute to national ICT and digital governance frameworks.</p>
+                    </li>
+                    <li>
+                        <strong>Promote Awareness and Understanding</strong>
+                        <p>To enhance awareness and understanding of Internet governance issues, including digital rights, cybersecurity, data protection, and emerging technologies, among stakeholders and the general public.</p>
+                    </li>
+                    <li>
+                        <strong>Strengthen Capacity and Participation</strong>
+                        <p>To build the capacity of stakeholders to effectively engage in Internet governance processes at national, regional, and global levels, including through initiatives such as training, schools, and targeted engagement platforms.</p>
+                    </li>
+                    <li>
+                        <strong>Identify Emerging Issues and National Priorities</strong>
+                        <p>To identify and elevate emerging Internet and Digital Governance issues relevant to Tanzania, ensuring that they are addressed through dialogue and brought to the attention of appropriate institutions and stakeholders.</p>
+                    </li>
+                    <li>
+                        <strong>Promote Digital Inclusion and Equity</strong>
+                        <p>To advance equitable access to and use of the Internet by addressing barriers related to connectivity, affordability, digital literacy, and gender disparities, ensuring that no group is left behind in the digital transformation.</p>
+                    </li>
+                    <li>
+                        <strong>Strengthen Linkages with Regional and Global Processes</strong>
+                        <p>To contribute Tanzania's perspectives to regional and global Internet governance platforms, while also ensuring that global developments are reflected in national dialogue and policy discussions.</p>
+                    </li>
+                    <li>
+                        <strong>Foster Collaboration and Partnerships</strong>
+                        <p>To promote cooperation among stakeholders in addressing Internet governance challenges and leveraging digital opportunities for national development.</p>
+                    </li>
+                </ol>
             </div>
         </div>
     </section>
