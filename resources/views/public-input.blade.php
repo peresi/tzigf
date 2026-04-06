@@ -10,8 +10,16 @@
                 <p class="eyebrow">TzIGF 2026 Participation</p>
                 <h1>Public Call for Input</h1>
                 <p>
-                    Share issues, challenges, and policy questions that should shape the agenda of the Tanzania Internet Governance Forum 2026.
-                    Your submission helps the Secretariat build a bottom-up, multistakeholder programme.
+                    The Tanzania Internet Governance Forum (TzIGF) 2026 invites stakeholders to submit inputs to help shape the agenda, thematic priorities, and programme design of the Forum.
+                    This multistakeholder process ensures that the Forum reflects national priorities, while aligning with global Internet Governance processes, including:
+                </p>
+                <ul class="list-clean" style="margin-top:.75rem;">
+                    <li>WSIS Action Lines</li>
+                    <li>Global Digital Compact (GDC)</li>
+                    <li>Sustainable Development Goals (SDGs)</li>
+                </ul>
+                <p style="margin-top:.85rem;">
+                    Public input deadline: <strong>15 April 2026</strong>.
                 </p>
             </div>
             <aside class="hero-highlight">

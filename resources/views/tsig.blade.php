@@ -13,6 +13,9 @@
                     A national capacity-development platform that prepares current and emerging leaders
                     to engage effectively in Internet governance dialogue and policy processes.
                 </p>
+                <p style="margin-top:.85rem;">
+                    <strong>Deadline: 10th May 2026</strong>
+                </p>
             </div>
             <aside class="hero-highlight">
                 <h3>TzSIG at a Glance</h3>

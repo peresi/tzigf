@@ -14,7 +14,8 @@ use App\Http\Controllers\TsigApplicationController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/about', [HomeController::class, 'about'])->name('about');
+Route::redirect('/about', '/history');
+Route::get('/history', [HomeController::class, 'about'])->name('history');
 Route::get('/what-we-do', [HomeController::class, 'whatWeDo'])->name('what-we-do');
 Route::view('/engagement-platforms', 'engagement-platforms')->name('engagement-platforms');
 Route::get('/reports', [HomeController::class, 'reportsIndex'])->name('reports.index');

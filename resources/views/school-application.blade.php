@@ -13,6 +13,9 @@
                     This page provides details on how to register for the School and how to submit an
                     application for participation when available seats are limited.
                 </p>
+                <p style="margin-top:.85rem;">
+                    <strong>Deadline: 10th May 2026</strong>
+                </p>
             </div>
             <aside class="hero-highlight">
                 <h3>Application Support</h3>

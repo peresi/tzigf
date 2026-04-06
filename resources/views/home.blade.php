@@ -15,7 +15,7 @@
                     and citizens to shape inclusive national digital priorities.
                 </p>
                 <div class="hero-actions">
-                    <a class="btn btn-primary" href="{{ route('about') }}">Learn About TzIGF</a>
+                    <a class="btn btn-primary" href="{{ route('history') }}">Explore Our History</a>
                     <a class="btn btn-secondary" href="{{ route('what-we-do') }}">Explore What We Do</a>
                     <a class="btn btn-secondary" href="{{ route('reports.index') }}">Browse Reports</a>
                 </div>
@@ -45,9 +45,9 @@
 
             <div class="grid">
                 <article class="card">
-                    <h3>About</h3>
+                    <h3>Our History</h3>
                     <p>Learn what TzIGF is, why it matters, and the role it plays in Tanzania's internet governance ecosystem.</p>
-                    <p style="margin-top:.75rem;"><a href="{{ route('about') }}">Open About page</a></p>
+                    <p style="margin-top:.75rem;"><a href="{{ route('history') }}">Open Our History page</a></p>
                 </article>
                 <article class="card">
                     <h3>What We Do</h3>

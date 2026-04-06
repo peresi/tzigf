@@ -1,5 +1,5 @@
 <a href="{{ route('home') }}" class="{{ request()->routeIs('home') ? 'is-active' : '' }}">Home</a>
-<a href="{{ route('about') }}" class="{{ request()->routeIs('about') ? 'is-active' : '' }}">About</a>
+<a href="{{ route('history') }}" class="{{ request()->routeIs('history') ? 'is-active' : '' }}">Our History</a>
 <a href="{{ route('what-we-do') }}" class="{{ request()->routeIs('what-we-do') ? 'is-active' : '' }}">What We Do</a>
 <a href="{{ route('engagement-platforms') }}" class="{{ request()->routeIs('engagement-platforms') ? 'is-active' : '' }}">Engagement Platforms</a>
 <a href="{{ route('reports.index') }}" class="{{ request()->routeIs('reports.index') ? 'is-active' : '' }}">Reports</a>
