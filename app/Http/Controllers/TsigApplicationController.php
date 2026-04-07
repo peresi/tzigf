@@ -57,10 +57,9 @@ class TsigApplicationController extends Controller
             'declaration_confirmed' => ['accepted'],
         ]);
 
-        TsigApplication::create([
-            ...$data,
+        TsigApplication::create(array_merge($data, [
             'status' => 'submitted',
-        ]);
+        ]));
 
         return redirect()
             ->route('tsig')

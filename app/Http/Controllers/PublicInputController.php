@@ -77,8 +77,7 @@ class PublicInputController extends Controller
         $summaryRelevance = $data['additional_input'] ?: 'N/A';
         $summaryPolicyQuestions = $data['implementation_impact'];
 
-        PublicInputSubmission::create([
-            ...$data,
+        PublicInputSubmission::create(array_merge($data, [
             'country' => 'Tanzania',
             'issue_title' => mb_substr($summaryTitle, 0, 255),
             'issue_description' => $summaryDescription,
@@ -86,7 +85,7 @@ class PublicInputController extends Controller
             'policy_questions' => $summaryPolicyQuestions,
             'stakeholders' => [$data['stakeholder_group']],
             'status' => 'submitted',
-        ]);
+        ]));
 
         return redirect()
             ->route('public-input.index')

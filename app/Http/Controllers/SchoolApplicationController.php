@@ -66,10 +66,9 @@ class SchoolApplicationController extends Controller
 
         $data['statement_of_interest'] = $data['motivation'];
 
-        SchoolApplicant::create([
-            ...$data,
+        SchoolApplicant::create(array_merge($data, [
             'status' => 'submitted',
-        ]);
+        ]));
 
         return redirect()
             ->route('school.application')

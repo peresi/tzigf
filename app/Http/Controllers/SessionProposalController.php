@@ -54,12 +54,11 @@ class SessionProposalController extends Controller
 
         unset($data['supporting_document']);
 
-        SessionProposal::create([
-            ...$data,
+        SessionProposal::create(array_merge($data, [
             'supporting_document_path' => $documentPath,
             'supporting_document_name' => $documentName,
             'status' => 'submitted',
-        ]);
+        ]));
 
         return redirect()
             ->route('session-proposal.index')
