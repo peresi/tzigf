@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\PublicInputSubmission;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Validation\Rule;
 use Illuminate\View\View;
 
@@ -77,7 +79,7 @@ class PublicInputController extends Controller
         $summaryRelevance = $data['additional_input'] ?: 'N/A';
         $summaryPolicyQuestions = $data['implementation_impact'];
 
-        PublicInputSubmission::create(array_merge($data, [
+        $payload = array_merge($data, [
             'country' => 'Tanzania',
             'issue_title' => mb_substr($summaryTitle, 0, 255),
             'issue_description' => $summaryDescription,
@@ -85,7 +87,19 @@ class PublicInputController extends Controller
             'policy_questions' => $summaryPolicyQuestions,
             'stakeholders' => [$data['stakeholder_group']],
             'status' => 'submitted',
-        ]));
+        ]);
+
+        $availableColumns = array_flip(Schema::getColumnListing((new PublicInputSubmission())->getTable()));
+        $filteredPayload = array_intersect_key($payload, $availableColumns);
+        $missingColumns = array_diff_key($payload, $availableColumns);
+
+        if ($missingColumns !== []) {
+            Log::warning('Public input submission is being stored with a partial schema.', [
+                'missing_columns' => array_keys($missingColumns),
+            ]);
+        }
+
+        PublicInputSubmission::create($filteredPayload);
 
         return redirect()
             ->route('public-input.index')
