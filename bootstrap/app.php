@@ -3,6 +3,7 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
+use Illuminate\Http\Request;
 use App\Http\Middleware\EnsureUserIsAdmin;
 
 return Application::configure(basePath: dirname(__DIR__))
@@ -12,6 +13,14 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
+        $middleware->redirectGuestsTo(function (Request $request): string {
+            if ($request->is('admin') || $request->is('admin/*')) {
+                return route('admin.login');
+            }
+
+            return route('home');
+        });
+
         $middleware->alias([
             'admin' => EnsureUserIsAdmin::class,
         ]);
