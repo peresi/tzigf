@@ -22,6 +22,10 @@
                 <p><strong>Established:</strong> 2020</p>
                 <p><strong>Editions completed:</strong> 6 (2020–2025)</p>
                 <p><strong>Participants trained:</strong> 700+</p>
+                <p><strong>13th Tanzania School of Internet Governance 2026</strong></p>
+                <p><strong>Date:</strong> 26 May 2026</p>
+                <p>📍 Holiday Inn Hotel, Dar es Salaam</p>
+                <p>🌐 Hybrid Participation</p>
             </aside>
         </div>
     </div>
