@@ -197,6 +197,18 @@
                     <h3 style="margin-top:1.2rem;">Section 5: Commitment</h3>
                     <div class="grid-2">
                         <div>
+                            <label for="reach_commitment" style="display:block; font-weight:600; margin-bottom:.35rem;">How many people do you commit to reach following completion of your fellowship? *</label>
+                            <select id="reach_commitment" name="reach_commitment" required style="width:100%; border:1px solid var(--line); border-radius:10px; padding:.62rem .72rem; background:#fff;">
+                                <option value="">Select</option>
+                                <option value="3" @selected(old('reach_commitment') === '3')>3</option>
+                                <option value="5" @selected(old('reach_commitment') === '5')>5</option>
+                                <option value="10" @selected(old('reach_commitment') === '10')>10</option>
+                                <option value="20" @selected(old('reach_commitment') === '20')>20</option>
+                                <option value="Above 20" @selected(old('reach_commitment') === 'Above 20')>Above 20</option>
+                            </select>
+                        </div>
+
+                        <div>
                             <label for="available_full_training" style="display:block; font-weight:600; margin-bottom:.35rem;">Are you available to attend the full training program (all days)? *</label>
                             <select id="available_full_training" name="available_full_training" required style="width:100%; border:1px solid var(--line); border-radius:10px; padding:.62rem .72rem; background:#fff;">
                                 <option value="">Select</option>
